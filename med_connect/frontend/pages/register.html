@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedConnect login</title>
+    <link rel="stylesheet" href="../css/register.css" />
+  </head>
+
+  <body>
+    <header class="auth-header">
+      <div class="auth-header-wrap">
+        <a href="../index.html" class="brand-link">Med<span>Connect</span></a>
+        <a href="../index.html" class="header-back-btn">Back</a>
+      </div>
+    </header>
+
+    <main class="auth-main">
+      <section class="auth-card">
+        <div class="auth-switch">
+          <button type="button" class="switch-btn active" id="loginSwitch">
+            Sign In
+          </button>
+          <button type="button" class="switch-btn" id="registerSwitch">
+            Create Account
+          </button>
+        </div>
+
+        <div class="auth-intro">
+          <h1 id="authTitle">Welcome Back</h1>
+          <p id="authSubtitle">Sign in to your MedConnect account</p>
+        </div>
+
+        <div class="role-tabs" id="roleTabs">
+          <button type="button" class="role-tab active" data-role="patient">
+            <span class="role-icon">🧑</span>
+            <span class="role-name">Patient</span>
+          </button>
+          <button type="button" class="role-tab" data-role="doctor">
+            <span class="role-icon">👨‍⚕️</span>
+            <span class="role-name">Doctor</span>
+          </button>
+          <button type="button" class="role-tab" data-role="assistant">
+            <span class="role-icon">📋</span>
+            <span class="role-name">Assistant</span>
+          </button>
+        </div>
+
+        <div class="form-message" id="formMessage"></div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="your@email.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <div class="password-field">
+              <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+              />
+              <button
+                type="button"
+                class="toggle-pass"
+                data-target="loginPassword"
+              >
+                👁
+              </button>
+            </div>
+          </div>
+
+          <div class="action-row single-action">
+            <a href="register.html" class="btn btn-primary btn-block"
+              >Sign In</a
+            >
+          </div>
+
+          <div class="google-divider">
+            <span>OR CONTINUE WITH</span>
+          </div>
+
+          <button type="button" class="google-btn" id="googleLoginBtn">
+            <span class="google-icon">🌐</span>
+            <span>Continue with Google</span>
+          </button>
+
+          <div class="form-note">
+            Don't have an account?
+            <button type="button" class="inline-link" id="toRegister">
+              Create one free
+            </button>
+          </div>
+        </form>
+
+        <form id="registerForm" class="hidden">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" placeholder="First name" />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" placeholder="Last name" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="registerEmail">Email Address</label>
+            <input
+              type="email"
+              id="registerEmail"
+              placeholder="your@email.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="registerPhone">Phone Number</label>
+            <input type="text" id="registerPhone" placeholder="01XXXXXXXXX" />
+          </div>
+
+          <div id="doctorFields" class="hidden-block">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="doctorSpecialty">Specialty</label>
+                <select id="doctorSpecialty">
+                  <option value="">Select Specialty</option>
+                  <option>Cardiology</option>
+                  <option>Neurology</option>
+                  <option>Orthopedics</option>
+                  <option>Pediatrics</option>
+                  <option>Dentistry</option>
+                  <option>Eye Care</option>
+                  <option>Dermatology</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="doctorDegree">Degree</label>
+                <input
+                  type="text"
+                  id="doctorDegree"
+                  placeholder="e.g. MBBS, MD"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="doctorBmdc">BMDC Registration No.</label>
+              <input type="text" id="doctorBmdc" placeholder="BMDC-XXXXX" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="registerPassword">Password</label>
+            <div class="password-field">
+              <input
+                type="password"
+                id="registerPassword"
+                placeholder="Create a password"
+              />
+              <button
+                type="button"
+                class="toggle-pass"
+                data-target="registerPassword"
+              >
+                👁
+              </button>
+            </div>
+            <div class="strength-wrap">
+              <div class="strength-bar">
+                <div class="strength-fill" id="strengthFill"></div>
+              </div>
+              <div class="strength-text" id="strengthText">
+                Enter a password
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="password-field">
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Repeat your password"
+              />
+              <button
+                type="button"
+                class="toggle-pass"
+                data-target="confirmPassword"
+              >
+                👁
+              </button>
+            </div>
+          </div>
+
+          <label class="terms-row">
+            <input type="checkbox" id="termsCheck" />
+            <span>I agree to the Terms of Service and Privacy Policy.</span>
+          </label>
+
+          <div class="action-row register-actions">
+            <button
+              type="button"
+              class="btn btn-primary btn-block"
+              id="registerBtn"
+            >
+              Register
+            </button>
+          </div>
+
+          <div class="google-divider">
+            <span>OR CONTINUE WITH</span>
+          </div>
+
+          <button type="button" class="google-btn" id="googleRegisterBtn">
+            <span class="google-icon">🌐</span>
+            <span>Continue with Google</span>
+          </button>
+
+          <div class="form-note">
+            Already have an account?
+            <button type="button" class="inline-link" id="toLogin">
+              Sign in
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script src="../js/register.js"></script>
+  </body>
+</html>
