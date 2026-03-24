@@ -1,0 +1,763 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Patient Dashboard — MedConnect</title>
+    <link href="../css/dashboard.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/27840f33e9.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <button class="hamburger" id="hamburger-btn" onclick="toggleDrawer()">
+        ☰
+      </button>
+      <a class="navbar-logo" aria-label="MedConnect home" href="../index.html">
+        Med<span>Connect</span>
+      </a>
+      <div class="navbar-links">
+        <a href="find-doctors.html">Find Doctors</a>
+        <div class="navbar-user">
+          <div class="navbar-avatar">👤</div>
+          Rahim Uddin
+        </div>
+      </div>
+    </nav>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar-lg">👤</div>
+          <div>
+            <div class="sidebar-user-name">Rahim Uddin</div>
+            <div class="sidebar-user-role">Patient</div>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <div class="sidebar-section-label">Main</div>
+          <a class="sidebar-item active" href="dashboard.html"
+            ><span class="icon"><i class="fa-solid fa-house-medical" style="color: rgb(255, 255, 255);"></i></span> Dashboard</a
+          >
+          <a class="sidebar-item" href="#appointments"
+            ><span class="icon"><i class="fa-regular fa-calendar-days" style="color: rgb(246, 246, 246);"></i></span> My Appointments
+            <span class="sidebar-badge">2</span></a
+          >
+          
+          <div class="sidebar-section-label">Health</div>
+          <a class="sidebar-item" href="#reminders"
+            ><span class="icon"><i class="fa-regular fa-alarm-clock" style="color: #f7f6f4;"></i></span> Medicine Reminder</a
+          >
+          <a class="sidebar-item" href="#records"
+            ><span class="icon"><i class="fa-solid fa-file-prescription" style="color: rgb(255, 255, 255);"></i></span> Medical Records</a
+          >
+
+          <div class="sidebar-section-label">Account</div>
+          <a class="sidebar-item" href="profile.html">
+            <span class="icon"><i class="fa-regular fa-circle-user" style="color: rgb(243, 245, 245);"></i></span> My Profile</a
+          >
+          
+          <a class="sidebar-item" href="register.html" onclick="confirmLogout(event)">
+            <span class="icon"><i class="fa-solid fa-power-off" style="color: rgb(253, 255, 255);"></i></span> Logout</a
+          >
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <div class="page-header">
+          <div class="page-title">Good Morning, Rahim </div>
+          <div class="page-sub" id="today-date">Loading date…</div>
+        </div>
+
+        <div class="profile-strip">
+          <div class="profile-avatar-big">👤</div>
+          <div style="flex: 1">
+            <div class="profile-name">Rahim Uddin</div>
+            <div class="profile-meta">Patient ID: MED-2024-00183 · Sylhet</div>
+            <div class="profile-completion">
+              <span>Profile 75% complete</span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" style="width: 75%"></div>
+              </div>
+              <a
+                href="#profile"
+                style="
+                  color: white;
+                  font-weight: 700;
+                  font-size: 11px;
+                  white-space: nowrap;
+                "
+                >Complete →</a
+              >
+            </div>
+          </div>
+          <a
+            class="btn btn-lg"
+            href="find-doctors.html"
+            style="background: white; color: var(--teal); flex-shrink: 0"
+            >+ Book Appointment</a
+          >
+        </div>
+
+        <div class="stats-row mb-24">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-regular fa-calendar-days" style="color: rgb(9, 124, 106);"></i></div>
+            <div class="stat-val">3</div>
+            <div class="stat-label">Total Appointments</div>
+            <div class="stat-change up">↑ 1 this month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⏳</i></div>
+            <div class="stat-val">1</div>
+            <div class="stat-label">Pending Approval</div>
+            <div class="stat-change neutral">Awaiting doctor</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-file-prescription" style="color: rgb(9, 124, 106);"></i></div>
+            <div class="stat-val">7</div>
+            <div class="stat-label">Prescriptions Saved</div>
+            <div class="stat-change up">All time</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-regular fa-alarm-clock" style="color: rgb(9, 124, 106);"></i></div>
+            <div class="stat-val">4</div>
+            <div class="stat-label">Active Reminders</div>
+            <div class="stat-change up">Today</div>
+          </div>
+        </div>
+
+        <div class="quick-actions mb-24">
+          <a class="quick-action-card" href="find-doctors.html">
+            <div class="qa-icon"><i class="fa-brands fa-sistrix" style="color: rgb(9, 124, 106);"></i></div>
+            <div class="qa-label">Find Doctor</div>
+          </a>
+          <a class="quick-action-card" href="find-doctors.html">
+            <div class="qa-icon"><i class="fa-regular fa-calendar-days" style="color: rgb(9, 124, 106);"></i></div>
+            <div class="qa-label">Book Appointment</div>
+          </a>
+          <a class="quick-action-card" href="#records">
+            <div class="qa-icon"><i class="fa-solid fa-file-prescription" style="color: rgb(9, 124, 106);"></i></div>
+            <div class="qa-label">View Records</div>
+          </a>
+          <a class="quick-action-card" href="#reminders">
+            <div class="qa-icon"><i class="fa-regular fa-alarm-clock" style="color: rgb(9, 124, 106);"></i></div>
+            <div class="qa-label">Medicine Reminder</div>
+          </a>
+        </div>
+
+        <div class="grid-2 mb-20" id="appointments">
+          <div class="card">
+            <div class="card-title">
+              <!-- <i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i>  -->
+              My Appointments
+              <a class="card-title-action" href="#appointments">View All</a>
+            </div>
+            <div class="appt-item">
+              <div class="appt-avatar-sm"><i class="fa-solid fa-user-doctor" style="color: rgb(1, 24, 20);"></i></div>
+              <div class="appt-info">
+                <div class="appt-doc-name">Dr. Rafiqul Islam</div>
+                <div class="appt-spec">Cardiologist · Serial #04</div>
+                <div class="appt-time"><i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i> 25 Mar, 2026 · 5:00 PM</div>
+              </div>
+              <div class="appt-actions">
+                <span class="badge badge-confirmed">✓ Confirmed</span>
+                <button class="btn btn-ghost btn-sm">Details</button>
+              </div>
+            </div>
+            <div class="appt-item">
+              <div class="appt-avatar-sm" style="background: #fff0eb"><i class="fa-solid fa-user-doctor" style="color: rgb(1, 24, 20);"></i></div>
+              <div class="appt-info">
+                <div class="appt-doc-name">Dr. Nusrat Jahan</div>
+                <div class="appt-spec">Neurologist</div>
+                <div class="appt-time"><i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i> 28 Mar, 2026 · 7:00 PM</div>
+              </div>
+              <div class="appt-actions">
+                <span class="badge badge-pending">⏳ Pending</span>
+                <button class="btn btn-ghost btn-sm">Details</button>
+              </div>
+            </div>
+            <div class="appt-item">
+              <div class="appt-avatar-sm" style="background: #eef2ff"><i class="fa-solid fa-user-doctor" style="color: rgb(1, 24, 20);"></i></div>
+              <div class="appt-info">
+                <div class="appt-doc-name">Dr. Kamal Hossain</div>
+                <div class="appt-spec">Orthopedics · Serial #11</div>
+                <div class="appt-time"><i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i> 10 Jan, 2026 · 6:00 PM</div>
+              </div>
+              <div class="appt-actions">
+                <span class="badge badge-completed">✔ Completed</span>
+                <button class="btn btn-ghost btn-sm">View Rx</button>
+              </div>
+            </div>
+            <div class="appt-item">
+              <div class="appt-avatar-sm" style="background: #fff0eb"><i class="fa-solid fa-user-doctor" style="color: rgb(1, 24, 20);"></i></div>
+              <div class="appt-info">
+                <div class="appt-doc-name">Dr.Israt Jahan</div>
+                <div class="appt-spec">Gastroenterologist</div>
+                <div class="appt-time"><i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i> 28 Mar, 2026 · 7:00 PM</div>
+              </div>
+              <div class="appt-actions">
+                <span class="badge" style="background: #e8f0fe; color: #355ac8"
+                  >✔ Doctor Accepted</span
+                >
+                <a
+                  class="btn btn-primary btn-sm"
+                  href="payment.html?doctor=Dr.+Israt+Jahan&amp;spec=Gastroenterologist&amp;date=28+Mar+2026&amp;time=7:00+PM&amp;fee=1000"
+                  > Pay to Confirm</a
+                >
+              </div>
+            </div>
+            <div style="margin-top: 16px">
+              <a class="btn btn-primary btn-full" href="find-doctors.html"
+                >+ Book New Appointment</a
+              >
+            </div>
+          </div>
+
+          <div class="card" id="reminders">
+            <div class="card-title">
+              <!-- <i class="fa-regular fa-bell" style="color: rgb(0, 10, 8);"></i>  -->
+              Medicine Reminders
+              <button
+                id = "disabled_btn"
+                class="btn btn-primary btn-sm"
+                onclick="showAddReminder()"
+                disabled
+              >
+                + Add
+              </button>
+            </div>
+            <div class="reminder-item">
+              <div class="reminder-icon"><b>⫏⫐</b></div>
+              <div class="reminder-info">
+                <div class="reminder-med">Amlodipine 5mg</div>
+                <div class="reminder-times">
+                  Morning 8:00 AM · Evening 8:00 PM
+                </div>
+              </div>
+              <div class="toggle-wrap">
+                <button
+                  class="toggle on"
+                  onclick="toggleReminder(this)" disabled
+                ></button>
+              </div>
+            </div>
+            <div class="reminder-item">
+              <div class="reminder-icon"><i class="fa-solid fa-syringe" style="color: rgb(0, 0, 0);"></i></div>
+              <div class="reminder-info">
+                <div class="reminder-med">Metformin 500mg</div>
+                <div class="reminder-times">Before meals — 3x daily</div>
+              </div>
+              <div class="toggle-wrap">
+                <button
+                  class="toggle on"
+                  onclick="toggleReminder(this)" disabled
+                ></button>
+              </div>
+            </div>
+            <div class="reminder-item">
+              <div class="reminder-icon"><b>⫏⫐</b></div>
+              <div class="reminder-info">
+                <div class="reminder-med">Omeprazole 20mg</div>
+                <div class="reminder-times">
+                  Morning 7:00 AM (before breakfast)
+                </div>
+              </div>
+              <div class="toggle-wrap">
+                <button
+                  class="toggle off"
+                  onclick="toggleReminder(this)" disabled
+                ></button>
+              </div>
+            </div>
+            <div class="reminder-item">
+              <div class="reminder-icon"><b>⫏⫐</b></i></div>
+              <div class="reminder-info">
+                <div class="reminder-med">Atorvastatin 10mg</div>
+                <div class="reminder-times">Night 10:00 PM</div>
+              </div>
+              <div class="toggle-wrap">
+                <button
+                  class="toggle on"
+                  onclick="toggleReminder(this)" disabled
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-20" id="records">
+          <div class="card-title">
+            <!-- <i class="fa-solid fa-file-circle-check" style="color: rgb(1, 24, 20);"></i>  -->
+            Medical Records &amp; Prescriptions
+            <a class="card-title-action" href="#records">Download All</a>
+          </div>
+
+          <div class="record-card">
+            <div class="record-header" onclick="toggleRecord(this)">
+              <div class="record-icon"><i class="fa-solid fa-file-prescription" style="color: rgb(0, 0, 0);"></i></div>
+              <div>
+                <div class="record-date">10 Jan 2026</div>
+                <div class="record-doc">
+                  Dr. Kamal Hossain · Orthopedics · Serial #11
+                </div>
+              </div>
+              <span
+                class="badge badge-completed"
+                style="margin-left: auto; margin-right: 12px"
+                >Completed</span
+              >
+              <span class="record-chevron">▼</span>
+            </div>
+            <div class="record-body">
+              <div class="rx-section">
+                <div class="rx-label">Diagnosis</div>
+                <div class="rx-value">
+                  Lumbar spondylosis with mild disc herniation at L4-L5.
+                </div>
+              </div>
+              <div class="rx-section">
+                <div class="rx-label">Medicines</div>
+                <div class="med-row">
+                  <div class="med-name">Ibuprofen 400mg</div>
+                  <div class="med-detail">3x daily after meals · 7 days</div>
+                </div>
+                <div class="med-row">
+                  <div class="med-name">
+                    Muscle relaxant (Methocarbamol 500mg)
+                  </div>
+                  <div class="med-detail">Twice daily · 5 days</div>
+                </div>
+                <div class="med-row">
+                  <div class="med-name">Omeprazole 20mg</div>
+                  <div class="med-detail">
+                    Once daily before breakfast · 7 days
+                  </div>
+                </div>
+              </div>
+              <div class="rx-section">
+                <div class="rx-label">Tests Advised</div>
+                <div class="rx-value">
+                  MRI Lumbar Spine, X-Ray L/S Spine AP &amp; Lateral
+                </div>
+              </div>
+              <div class="rx-section">
+                <div class="rx-label">Follow-up</div>
+                <div class="rx-value">3 weeks · Bring MRI report</div>
+              </div>
+              <button class="btn btn-ghost btn-sm mt-16">
+                📥 Download PDF
+              </button>
+            </div>
+          </div>
+
+          <div class="record-card">
+            <div class="record-header" onclick="toggleRecord(this)">
+              <div class="record-icon"><i class="fa-solid fa-file-prescription" style="color: rgb(0, 11, 10);"></i></div>
+              <div>
+                <div class="record-date">15 Nov 2025</div>
+                <div class="record-doc">
+                  Dr. Rafiqul Islam · Cardiology · Serial #08
+                </div>
+              </div>
+              <span
+                class="badge badge-completed"
+                style="margin-left: auto; margin-right: 12px"
+                >Completed</span
+              >
+              <span class="record-chevron">▼</span>
+            </div>
+            <div class="record-body">
+              <div class="rx-section">
+                <div class="rx-label">Diagnosis</div>
+                <div class="rx-value">
+                  Essential Hypertension (Stage 1). ECG — Normal sinus rhythm.
+                </div>
+              </div>
+              <div class="rx-section">
+                <div class="rx-label">Medicines</div>
+                <div class="med-row">
+                  <div class="med-name">Amlodipine 5mg</div>
+                  <div class="med-detail">Once daily morning · Ongoing</div>
+                </div>
+                <div class="med-row">
+                  <div class="med-name">Atorvastatin 10mg</div>
+                  <div class="med-detail">Once daily night · 30 days</div>
+                </div>
+              </div>
+              <div class="rx-section">
+                <div class="rx-label">Tests Advised</div>
+                <div class="rx-value">
+                  Fasting lipid profile, ECG repeat in 3 months, Renal function
+                  test
+                </div>
+              </div>
+              <div class="rx-section">
+                <div class="rx-label">Follow-up</div>
+                <div class="rx-value">1 month — bring test reports</div>
+              </div>
+              <button class="btn btn-ghost btn-sm mt-16">
+                📥 Download PDF
+              </button>
+            </div>
+          </div>
+
+          <div class="record-card">
+            <div class="record-header" onclick="toggleRecord(this)">
+              <div class="record-icon"><i class="fa-solid fa-file-prescription" style="color: rgb(0, 0, 0);"></i></div>
+              <div>
+                <div class="record-date">04 Aug 2025</div>
+                <div class="record-doc">
+                  Dr. Shirin Akter · Pediatrics · (Child: Rafi, 5yrs)
+                </div>
+              </div>
+              <span
+                class="badge badge-completed"
+                style="margin-left: auto; margin-right: 12px"
+                >Completed</span
+              >
+              <span class="record-chevron">▼</span>
+            </div>
+            <div class="record-body">
+              <div class="rx-section">
+                <div class="rx-label">Diagnosis</div>
+                <div class="rx-value">Acute tonsillitis with fever.</div>
+              </div>
+              <div class="rx-section">
+                <div class="rx-label">Medicines</div>
+                <div class="med-row">
+                  <div class="med-name">Amoxicillin syrup 250mg/5ml</div>
+                  <div class="med-detail">5ml 3x daily · 7 days</div>
+                </div>
+                <div class="med-row">
+                  <div class="med-name">Paracetamol syrup 120mg/5ml</div>
+                  <div class="med-detail">As needed for fever · 5ml</div>
+                </div>
+              </div>
+              <div class="rx-section">
+                <div class="rx-label">Follow-up</div>
+                <div class="rx-value">After 1 week if fever persists</div>
+              </div>
+              <button class="btn btn-ghost btn-sm mt-16">
+                📥 Download PDF
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="all-appointments">
+          <div class="card-title">
+            <!-- <i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i> -->
+             All Appointments
+            <a class="card-title-action" href="find-doctors.html">+ Book New</a>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Doctor</th>
+                  <th>Specialty</th>
+                  <th>Date &amp; Time</th>
+                  <th>Serial</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div style="font-weight: 700; color: var(--navy)">
+                      Dr. Israt Jahan
+                    </div>
+                  </td>
+                  <td>Gastroenterologist</td>
+                  <td>28 Mar 2026 · 7:00 PM</td>
+                  <td><span style="color: var(--gray)">—</span></td>
+                  <td>
+                    <span
+                      class="badge"
+                      style="background: #e8f0fe; color: #355ac8"
+                      >✔ Doctor Accepted</span
+                    >
+                  </td>
+                  <td>
+                    <a
+                      class="btn btn-primary btn-sm"
+                      href="payment.html?doctor=Dr.+Israt+Jahan&amp;spec=Gastroenterologist&amp;date=28+Mar+2026&amp;time=7:00+PM&amp;fee=1000"
+                      > Pay</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="font-weight: 700; color: var(--navy)">
+                      Dr. Rafiqul Islam
+                    </div>
+                  </td>
+                  <td>Cardiologist</td>
+                  <td>25 Mar 2026 · 5:00 PM</td>
+                  <td>
+                    <span
+                      style="
+                        background: var(--teal-light);
+                        color: var(--teal);
+                        padding: 3px 10px;
+                        border-radius: 6px;
+                        font-family: var(--display);
+                        font-weight: 700;
+                      "
+                      >#04</span
+                    >
+                  </td>
+                  <td>
+                    <span class="badge badge-confirmed">✓ Confirmed</span>
+                  </td>
+                  <td><button class="btn btn-ghost btn-sm">Details</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="font-weight: 700; color: var(--navy)">
+                      Dr. Nusrat Jahan
+                    </div>
+                  </td>
+                  <td>Neurologist</td>
+                  <td>28 Mar 2026 · 7:00 PM</td>
+                  <td><span style="color: var(--gray)">—</span></td>
+                  <td><span class="badge badge-pending">⏳ Pending</span></td>
+                  <td><button class="btn btn-danger btn-sm">Cancel</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="font-weight: 700; color: var(--navy)">
+                      Dr. Kamal Hossain
+                    </div>
+                  </td>
+                  <td>Orthopedics</td>
+                  <td>10 Jan 2026 · 6:00 PM</td>
+                  <td>
+                    <span
+                      style="
+                        background: var(--teal-light);
+                        color: var(--teal);
+                        padding: 3px 10px;
+                        border-radius: 6px;
+                        font-family: var(--display);
+                        font-weight: 700;
+                      "
+                      >#11</span
+                    >
+                  </td>
+                  <td>
+                    <span class="badge badge-completed">✔ Completed</span>
+                  </td>
+                  <td><button class="btn btn-ghost btn-sm">View Rx</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="font-weight: 700; color: var(--navy)">
+                      Dr. Rafiqul Islam
+                    </div>
+                  </td>
+                  <td>Cardiologist</td>
+                  <td>15 Nov 2025 · 5:30 PM</td>
+                  <td>
+                    <span
+                      style="
+                        background: var(--teal-light);
+                        color: var(--teal);
+                        padding: 3px 10px;
+                        border-radius: 6px;
+                        font-family: var(--display);
+                        font-weight: 700;
+                      "
+                      >#08</span
+                    >
+                  </td>
+                  <td>
+                    <span class="badge badge-completed">✔ Completed</span>
+                  </td>
+                  <td><button class="btn btn-ghost btn-sm">View Rx</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div
+      class="modal-overlay"
+      id="logout-modal"
+      onclick="if (event.target === this) closeLogoutModal();"
+    >
+      <div class="modal-box" style="max-width: 400px; padding: 36px 32px">
+        <div style="font-size: 52px; margin-bottom: 16px; text-align: center">
+          <i class="fa-solid fa-power-off" style="color: rgb(0, 16, 16);"></i>
+        </div>
+        <div
+          style="
+            font-family: var(--display);
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 10px;
+          "
+        >
+          Log Out?
+        </div>
+        <div
+          style="
+            font-size: 14px;
+            color: var(--gray);
+            text-align: center;
+            margin-bottom: 28px;
+            line-height: 1.6;
+          "
+        >
+          Are you sure you want to log out of your MedConnect account?
+        </div>
+        <div style="display: flex; gap: 12px">
+          <button class="btn btn-ghost btn-full" onclick="closeLogoutModal()">
+            Cancel
+          </button>
+          <button
+            class="btn btn-danger btn-full"
+            onclick="window.location.href='register.html'"
+            style="justify-content: center"
+          >
+            Yes, Log Out
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal-overlay"
+      id="reminder-modal"
+      onclick="handleOverlayClick(event)"
+    >
+      <div
+        class="modal-box"
+        style="text-align: left; max-width: 440px; padding: 32px 30px"
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+          "
+        >
+          <div style="display: flex; align-items: center; gap: 10px">
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+                background: var(--teal-light);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+              "
+            >
+              <i class="fa-regular fa-alarm-clock" style="color: rgb(0, 0, 0);"></i>
+            </div>
+            <div>
+              <div
+                style="
+                  font-family: var(--display);
+                  font-size: 18px;
+                  font-weight: 800;
+                  color: var(--navy);
+                "
+              >
+                Add Medicine Reminder
+              </div>
+              <div style="font-size: 12px; color: var(--gray); margin-top: 1px">
+                Set up a daily medicine alert
+              </div>
+            </div>
+          </div>
+          <button
+            onclick="closeReminderModal()"
+            style="
+              background: var(--gray-light);
+              border: 1px solid var(--border);
+              border-radius: 8px;
+              width: 32px;
+              height: 32px;
+              cursor: pointer;
+              font-size: 14px;
+              color: var(--gray);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            ✕
+          </button>
+        </div>
+        <div class="form-group">
+          <label>Medicine Name</label>
+          <input
+            class="input"
+            id="rem-name"
+            placeholder="e.g. Amlodipine 5mg"
+          />
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px">
+          <div class="form-group">
+            <label>Frequency</label>
+            <select class="select" id="rem-freq">
+              <option>Once daily</option>
+              <option>Twice daily</option>
+              <option>3x daily</option>
+              <option>Before meals</option>
+              <option>After meals</option>
+              <option>As needed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Dose / Quantity</label>
+            <input class="input" id="rem-dose" placeholder="e.g. 1 tablet" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Reminder Time(s)</label>
+          <input
+            class="input"
+            id="rem-times"
+            placeholder="e.g. 8:00 AM, 8:00 PM"
+          />
+          <div style="font-size: 11px; color: var(--gray); margin-top: 5px">
+            Separate multiple times with a comma
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Notes (Optional)</label>
+          <input
+            class="input"
+            id="rem-notes"
+            placeholder="e.g. Take with food"
+          />
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px">
+          <button class="btn btn-ghost btn-full" onclick="closeReminderModal()">
+            Cancel
+          </button>
+          <button class="btn btn-primary btn-full" onclick="saveReminder()">
+            <i class="fa-solid fa-pills" style="color: rgb(0, 0, 0);"></i> Save Reminder
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="drawer-overlay"
+      id="drawer-overlay"
+      onclick="closeDrawer()"
+    ></div>
+
+    <script src="../js/dashboard.js"></script>
+
+  </body>
+</html>
