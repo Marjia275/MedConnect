@@ -72,7 +72,7 @@ textarea {
   cursor: pointer;
   background: #f2f5f7;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 700; 
   color: #18324c;
   transition: all 0.2s;
 }

@@ -21,7 +21,7 @@ var months = [
   "October",
   "November",
   "December",
-];
+]; 
 
 document.getElementById("today-date").textContent =
   days[now.getDay()] +
