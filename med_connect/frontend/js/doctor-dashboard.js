@@ -8,6 +8,7 @@ var days = [
   "Friday",
   "Saturday",
 ];
+
 var months = [
   "January",
   "February",
