@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MedConnect login</title>
     <link rel="stylesheet" href="../css/register.css" />
+
+       <script
+      src="https://kit.fontawesome.com/27840f33e9.js"
+      crossorigin="anonymous"
+    ></script>
+
   </head>
 
   <body>
@@ -33,15 +39,16 @@
 
         <div class="role-tabs" id="roleTabs">
           <button type="button" class="role-tab active" data-role="patient">
-            <span class="role-icon">🧑</span>
+            <span class="role-icon"><i class="fa-solid fa-user-group"></i></span>
             <span class="role-name">Patient</span>
           </button>
           <button type="button" class="role-tab" data-role="doctor">
-            <span class="role-icon">👨‍⚕️</span>
+            <span class="role-icon"><i class="fa-solid fa-stethoscope"></i></span>
             <span class="role-name">Doctor</span>
           </button>
           <button type="button" class="role-tab" data-role="assistant">
-            <span class="role-icon">📋</span>
+            <span class="role-icon"><i class="fa-solid fa-user-pen" style="color: #000000"></i
+            ></span>
             <span class="role-name">Assistant</span>
           </button>
         </div>
@@ -66,8 +73,9 @@
                 type="button"
                 class="toggle-pass"
                 data-target="loginPassword"
+                id="myPassword"
               >
-                👁
+             🔓
               </button>
             </div>
           </div>
@@ -83,7 +91,7 @@
           </div>
 
           <button type="button" class="google-btn" id="googleLoginBtn">
-            <span class="google-icon">🌐</span>
+            <span class="google-icon"><i class="fa-solid fa-arrow-right-to-bracket"></i></span>
             <span>Continue with Google</span>
           </button>
 
@@ -164,8 +172,9 @@
                 type="button"
                 class="toggle-pass"
                 data-target="registerPassword"
+                id="myPassword"   
               >
-                👁
+             🔓
               </button>
             </div>
             <div class="strength-wrap">
@@ -190,8 +199,9 @@
                 type="button"
                 class="toggle-pass"
                 data-target="confirmPassword"
+                id="myPassword"
               >
-                👁
+             🔓
               </button>
             </div>
           </div>
@@ -216,7 +226,7 @@
           </div>
 
           <button type="button" class="google-btn" id="googleRegisterBtn">
-            <span class="google-icon">🌐</span>
+            <span class="google-icon"><i class="fa-solid fa-arrow-right-to-bracket"></i></span>
             <span>Continue with Google</span>
           </button>
 

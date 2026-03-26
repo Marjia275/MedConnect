@@ -81,10 +81,10 @@ function togglePassword(inputId, button) {
 
   if (input.type === "password") {
     input.type = "text";
-    button.textContent = "🙈";
+    button.textContent = "🔒";
   } else {
     input.type = "password";
-    button.textContent = "👁";
+    button.textContent = "🔓";
   }
 }
 
