@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title>My Profile</title>
+    <link href="../css/doctor-profile.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/27840f33e9.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="nav">
+      <button class="ham" id="hambtn" onclick="toggleDrawer()">☰</button>
+      <a class="logo" href="../index.html">Med<span>Connect</span></a>
+      <div class="nav-links">
+        <div class="nav-user">
+          <div class="nav-avatar"><i class="fa-solid fa-stethoscope"></i></div>
+          Dr. Rafiqul Islam
+        </div>
+      </div>
+    </nav>
+
+    <div class="layout">
+      <aside class="side" id="sidebar">
+        <div class="side-user">
+          <div class="side-avatar"><i class="fa-solid fa-stethoscope"></i></div>
+          <div>
+            <div class="side-name">Dr. Rafiqul Islam</div>
+            <div class="side-role">Cardiologist</div>
+          </div>
+        </div>
+        <nav class="side-nav">
+          <a class="side-item" href="doctor-dashboard.html"
+            ><span class="ico"
+              ><i class="fa-solid fa-house-medical" style="color: #fff"></i
+            ></span>
+            Dashboard</a
+          >
+          <a class="side-item" href="Doctor_My_patients.html"
+            ><span class="ico"
+              ><i class="fa-solid fa-user-group" style="color: #fff"></i
+            ></span>
+            My Patients</a
+          >
+          <a class="side-item active" href="doctor-profile.html"
+            ><span class="ico"
+              ><i class="fa-regular fa-circle-user" style="color: #f3f5f5"></i
+            ></span>
+            My Profile</a
+          >
+          <a class="side-item" href="doctor-assistant.html"
+            ><span class="ico"
+              ><i class="fa-solid fa-user-pen" style="color: #e8f0fe"></i
+            ></span>
+            Assistant Profile</a
+          >
+          <a class="side-item" href="#" onclick="confirmLogout(event)"
+            ><span class="ico"
+              ><i class="fa-solid fa-power-off" style="color: #fff"></i
+            ></span>
+            Logout</a
+          >
+        </nav>
+      </aside>
+
+      <main class="main">
+        <div class="page-header">
+          <div class="page-title">
+            My Profile
+            <i class="fa-regular fa-circle-user" style="color: #f3f5f5"></i>
+          </div>
+          <div class="page-sub">---------------------</div>
+        </div>
+
+        <div class="profile-banner">
+          <div class="banner-left">
+            <div class="banner-avatar">
+              <i class="fa-solid fa-stethoscope"></i>
+            </div>
+            <div>
+              <div class="banner-name" id="ph-nm">Dr. Rafiqul Islam</div>
+              <div class="banner-spec" id="ph-sp">
+                Cardiologist &nbsp;·&nbsp; MBBS, MD
+              </div>
+              <div class="banner-loc" id="ph-loc">
+                <i class="fa-solid fa-location-dot"></i> Sylhet, Bangladesh
+              </div>
+              <div class="banner-badges">
+                <span class="badge1">✔ Verified Doctor</span>
+                <span class="badge2" id="ph-id">ID: MED-DOC-00042</span>
+              </div>
+            </div>
+          </div>
+          <div class="banner-stats">
+            <div class="stat-box">
+              <div class="stat-val"><i class="fa-solid fa-star"></i> 4.9</div>
+              <div class="stat-lbl">Rating</div>
+            </div>
+            <div class="stat-div"></div>
+            <div class="stat-box">
+              <div class="stat-val">142</div>
+              <div class="stat-lbl">Patients</div>
+            </div>
+
+            <div class="stat-div"></div>
+            <div class="stat-box">
+              <div class="stat-val">12 yrs</div>
+              <div class="stat-lbl">Experience</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col-section">
+          <div class="two-col-item">
+            <div class="sec-row">
+              <div class="sec-title">Personal Information</div>
+            </div>
+            <div class="card1 fill-height">
+              <div class="field">
+                <label>Full Name</label>
+                <input class="inp" id="f-name" value="Dr. Rafiqul Islam" />
+              </div>
+              <div class="field">
+                <label>Email Address</label>
+                <input
+                  class="inp"
+                  id="f-email"
+                  type="email"
+                  value="rafiqul@email.com"
+                />
+              </div>
+              <div class="field">
+                <label>Phone Number</label>
+                <input class="inp" id="f-phone" value="01712-345678" />
+              </div>
+              <div class="field">
+                <label>Gender</label>
+                <select class="inp sel" id="f-gender">
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>City / Location</label>
+                <input class="inp" id="f-city" value="Sylhet" />
+              </div>
+              <div class="field">
+                <label>Date of Birth</label>
+                <input class="inp" id="f-dob" type="date" value="1985-06-15" />
+              </div>
+              <div class="save-row">
+                <button class="btn1" onclick="saveSection('personal')">
+                  Save Personal Info
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="two-col-item">
+            <div class="sec-row">
+              <div class="sec-title">Professional Information</div>
+            </div>
+            <div class="card1 fill-height">
+              <div class="pro-grid">
+                <div class="field">
+                  <label>Specialty</label>
+                  <select class="inp sel" id="f-spec">
+                    <option selected>Cardiology</option>
+                    <option>Neurology</option>
+                    <option>Orthopedics</option>
+                    <option>Pediatrics</option>
+                    <option>Dentistry</option>
+                    <option>Dermatology</option>
+                    <option>Ophthalmology</option>
+                    <option>Gynecology</option>
+                    <option>General Medicine</option>
+                    <option>Psychiatry</option>
+                    <option>ENT</option>
+                    <option>Urology</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Medical Degree</label>
+                  <input class="inp" id="f-deg" value="MBBS, MD" />
+                </div>
+                <div class="field">
+                  <label>Years of Experience</label>
+                  <input class="inp" id="f-exp" type="number" value="12" />
+                </div>
+                <div class="field">
+                  <label>BMDC Registration No.</label>
+                  <input class="inp" id="f-bmdc" value="BMDC-A-45821" />
+                </div>
+                <div class="field">
+                  <label>Consultation Fee (৳)</label>
+                  <input class="inp" id="f-fee" type="number" value="800" />
+                </div>
+                <div class="field">
+                  <label>Max Patients Per Day</label>
+                  <input class="inp" id="f-mp" type="number" value="20" />
+                </div>
+                <div class="field full">
+                  <label>Chamber / Hospital Name</label>
+                  <input
+                    class="inp"
+                    id="f-ch"
+                    value="Sylhet MAG Osmani Medical College"
+                  />
+                </div>
+                <div class="field full">
+                  <label>Chamber Address</label>
+                  <input class="inp" id="f-cha" value="Kumarpara, Sylhet" />
+                </div>
+                <div class="field full">
+                  <label>About / Bio</label>
+                  <textarea class="inp ta" id="f-about">
+Dr. Rafiqul Islam is a renowned Cardiologist with over 12 years of experience.</textarea
+                  >
+                </div>
+              </div>
+              <div class="save-row">
+                <button class="btn1" onclick="saveSection('professional')">
+                  Save Professional Info
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-row mt">
+          <div class="sec-title">Availability Schedule</div>
+        </div>
+
+        <div class="card1 mb">
+          <div class="avail-grid" id="avail-list">
+            <div class="avail-row">
+              <div class="avail-row-inner">
+                <div class="avail-top-row">
+                  <div class="day-toggle-wrap">
+                    <button
+                      class="tog on"
+                      onclick="toggleDay(this)"
+                      type="button"
+                    ></button>
+                    <input type="date" class="inp date-inp" />
+                  </div>
+                  <button
+                    class="del-btn"
+                    onclick="deleteSlot(this)"
+                    type="button"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div class="time-group">
+                  <div class="tgrp">
+                    <label>From</label>
+                    <input class="inp tinp" type="time" value="10:00" />
+                  </div>
+                  <span class="tsep">to</span>
+                  <div class="tgrp">
+                    <label>To</label>
+                    <input class="inp tinp" type="time" value="14:00" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="avail-row">
+              <div class="avail-row-inner">
+                <div class="avail-top-row">
+                  <div class="day-toggle-wrap">
+                    <button
+                      class="tog on"
+                      onclick="toggleDay(this)"
+                      type="button"
+                    ></button>
+                    <input type="date" class="inp date-inp" />
+                  </div>
+                  <button
+                    class="del-btn"
+                    onclick="deleteSlot(this)"
+                    type="button"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div class="time-group">
+                  <div class="tgrp">
+                    <label>From</label>
+                    <input class="inp tinp" type="time" value="17:00" />
+                  </div>
+                  <span class="tsep">to</span>
+                  <div class="tgrp">
+                    <label>To</label>
+                    <input class="inp tinp" type="time" value="20:00" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="avail-footer">
+            <button class="btn-add" onclick="addSlot()">
+              ＋ Add Time Slot
+            </button>
+            <button class="btn1" onclick="saveSection('availability')">
+              Save Availability
+            </button>
+          </div>
+        </div>
+
+        <div class="two-col-section mb">
+          <div class="two-col-item">
+            <div class="sec-row">
+              <div class="sec-title">Change Password</div>
+            </div>
+            <div class="card1 fill-height">
+              <div class="field">
+                <label>Current Password</label>
+                <div class="pw-wrap">
+                  <input
+                    class="inp"
+                    id="pw0"
+                    type="password"
+                    placeholder="Enter your current password"
+                  />
+                  <button
+                    class="eye-btn"
+                    onclick="togglePw('pw0', this)"
+                    type="button"
+                  >
+                    👁
+                  </button>
+                </div>
+              </div>
+              <div class="field">
+                <label>New Password</label>
+                <div class="pw-wrap">
+                  <input
+                    class="inp"
+                    id="pw1"
+                    type="password"
+                    placeholder="Create new password"
+                    oninput="checkStrength(this.value)"
+                  />
+                  <button
+                    class="eye-btn"
+                    onclick="togglePw('pw1', this)"
+                    type="button"
+                  >
+                    👁
+                  </button>
+                </div>
+              </div>
+              <div class="field">
+                <label>Confirm New Password</label>
+                <div class="pw-wrap">
+                  <input
+                    class="inp"
+                    id="pw2"
+                    type="password"
+                    placeholder="Re-enter new password"
+                  />
+                  <button
+                    class="eye-btn"
+                    onclick="togglePw('pw2', this)"
+                    type="button"
+                  >
+                    👁
+                  </button>
+                </div>
+              </div>
+              <div id="swrap" class="str-wrap">
+                <div class="str-label">Strength: <span id="stext">—</span></div>
+                <div class="str-bg">
+                  <div class="str-bar" id="strbar"></div>
+                </div>
+              </div>
+              <div class="save-row">
+                <button class="btn1" onclick="changePassword()">
+                  Update Password
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="two-col-item">
+            <div class="sec-row"><div class="sec-title">Danger Zone</div></div>
+            <div class="danger-zone fill-height">
+              <div class="danger-title">Danger Zone</div>
+              <div class="danger-desc">
+                Deactivating your account will immediately remove your profile
+                from the patient search and cancel all pending appointments.
+                This action cannot be undone without contacting support.
+              </div>
+              <button class="btn4" onclick="confirmDeactivate()">
+                Deactivate My Account
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div
+      class="modal"
+      id="dmod"
+      onclick="if (event.target === this) closeDeactivate();"
+    >
+      <div class="modal-box">
+        <div class="modal-title">Deactivate Account?</div>
+        <div class="modal-desc">
+          Your profile will be hidden from patients and all pending appointment
+          requests will be cancelled. To reactivate, contact MedConnect support.
+        </div>
+        <div class="modal-warn">This cannot be undone from within the app.</div>
+        <div class="modal-btns">
+          <button class="btn2 btn-full" onclick="closeDeactivate()">
+            Cancel
+          </button>
+          <a href="register.html" class="btn4 btn-full">Yes, Deactivate</a>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal"
+      id="lmod"
+      onclick="if (event.target === this) closeLogoutModal();"
+    >
+      <div class="modal-box">
+        <div class="modal-icon">
+          <i class="fa-solid fa-power-off" style="color: #18324c"></i>
+        </div>
+        <div class="modal-title">Log Out?</div>
+        <div class="modal-desc modal-desc-lg">
+          Are you sure you want to log out?
+        </div>
+        <div class="modal-btns">
+          <button class="btn2 btn-full" onclick="closeLogoutModal()">
+            Cancel
+          </button>
+          <a href="register.html" class="btn3 btn-full">Yes, Log Out</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="dov" onclick="closeDrawer()"></div>
+    <script src="../js/doctor-profile.js"></script>
+  </body>
+</html>
