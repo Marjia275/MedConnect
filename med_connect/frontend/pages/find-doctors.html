@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Find Doctors — MedConnect</title>
+  <link href="../css/find-doctors.css" rel="stylesheet" />
+</head>
+<script src="https://kit.fontawesome.com/27840f33e9.js" crossorigin="anonymous"></script>
+
+<body>
+
+  <nav class="navbar">
+    <a class="navbar-logo" aria-label="MedConnect home" href="dashboard.html">
+      Med<span>Connect</span>
+    </a>
+    <div class="navbar-links">
+
+
+
+      <a href="dashboard.html">My Dashboard</a>
+
+      <div class="navbar-user" onclick="window.location='dashboard.html'">
+        <div class="navbar-avatar">👤</div>
+        Rahim Uddin
+      </div>
+    </div>
+  </nav>
+  <script src="https://kit.fontawesome.com/27840f33e9.js" crossorigin="anonymous"></script>
+  <div class="page-hero">
+    <h1><i class="fa-solid fa-magnifying-glass" style="color: rgb(234, 241, 240);"></i> Find Your Doctor</h1>
+    <p>Verified medical professionals across Bangladesh</p>
+  </div>
+
+  <div class="filters-bar">
+    <div class="filter-group filter-search">
+      <label>Doctor Name</label>
+      <input class="input input-search" id="q-name" oninput="applyFilters()" placeholder="Search by name..." />
+    </div>
+    <div class="filter-group">
+      <label>Specialty</label>
+      <select class="select" id="q-spec" onchange="applyFilters()">
+        <option value="">All Specialties</option>
+        <option>Cardiology</option>
+        <option>Neurology</option>
+        <option>Orthopedics</option>
+        <option>Pediatrics</option>
+        <option>Dentistry</option>
+        <option>Eye Care</option>
+        <option>Dermatology</option>
+        <option>Gynecology</option>
+        <option>ENT</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Location</label>
+      <select class="select" id="q-location" onchange="applyFilters()">
+        <option value="">All Locations</option>
+        <option>Sylhet</option>
+        <option>Dhaka</option>
+        <option>Chittagong</option>
+        <option>Rajshahi</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Availability</label>
+      <select class="select" id="q-avail" onchange="applyFilters()">
+        <option value="">Any</option>
+        <option value="available">Available Today</option>
+      </select>
+    </div>
+    <div class="filter-results">
+      Showing <strong id="result-count" style="margin:0 4px;">0</strong> doctors
+    </div>
+  </div>
+
+  <div class="doctors-layout">
+
+    <aside class="filter-sidebar">
+      <div class="filter-panel">
+        <div class="filter-panel-title">
+          Specialty
+          <a onclick="clearSpec()">Clear</a>
+        </div>
+        <label class="filter-check-item"><input class="spec-cb" onchange="applyFilters()" type="checkbox"
+            value="Cardiology" /> Cardiology <span class="filter-check-count">3</span></label>
+        <label class="filter-check-item"><input class="spec-cb" onchange="applyFilters()" type="checkbox"
+            value="Neurology" /> Neurology <span class="filter-check-count">2</span></label>
+        <label class="filter-check-item"><input class="spec-cb" onchange="applyFilters()" type="checkbox"
+            value="Orthopedics" /> Orthopedics <span class="filter-check-count">2</span></label>
+        <label class="filter-check-item"><input class="spec-cb" onchange="applyFilters()" type="checkbox"
+            value="Pediatrics" /> Pediatrics <span class="filter-check-count">2</span></label>
+        <label class="filter-check-item"><input class="spec-cb" onchange="applyFilters()" type="checkbox"
+            value="Dentistry" /> Dentistry <span class="filter-check-count">1</span></label>
+        <label class="filter-check-item"><input class="spec-cb" onchange="applyFilters()" type="checkbox"
+            value="Eye Care" /> Eye Care <span class="filter-check-count">1</span></label>
+        <label class="filter-check-item"><input class="spec-cb" onchange="applyFilters()" type="checkbox"
+            value="Dermatology" /> Dermatology <span class="filter-check-count">1</span></label>
+        <label class="filter-check-item"><input class="spec-cb" onchange="applyFilters()" type="checkbox"
+            value="Gynecology" /> Gynecology <span class="filter-check-count">1</span></label>
+      </div>
+      <div class="filter-panel">
+        <div class="filter-panel-title">Consultation Fee</div>
+        <input class="fee-slider" id="fee-slider" max="2000" min="200" oninput="updateFee(this)" step="100" type="range"
+          value="2000">
+        <div class="fee-range-display">
+          <span>৳200</span>
+          <span>Up to <span id="fee-label">৳2,000</span></span>
+        </div>
+        </input>
+      </div>
+      <div class="filter-panel">
+        <div class="filter-panel-title">Availability</div>
+        <label class="filter-check-item">
+          <input id="avail-today" onchange="applyFilters()" type="checkbox" /> Available Today
+        </label>
+      </div>
+      <div class="filter-panel">
+        <div class="filter-panel-title">Experience</div>
+        <label class="filter-check-item"><input class="exp-cb" onchange="applyFilters()" type="checkbox" value="5" /> 5+
+          Years</label>
+        <label class="filter-check-item"><input class="exp-cb" onchange="applyFilters()" type="checkbox" value="10" />
+          10+ Years</label>
+        <label class="filter-check-item"><input class="exp-cb" onchange="applyFilters()" type="checkbox" value="15" />
+          15+ Years</label>
+      </div>
+      <button class="clear-filter" onclick="clearAllFilters()">Clear All Filters</button>
+    </aside>
+
+    <div class="docs-list">
+      <div class="sort-bar">
+        <span id="sort-info">Showing all doctors</span>
+        <select class="sort-select" id="sort-by" onchange="applyFilters()">
+          <option value="rating">Sort: Best Rating</option>
+          <option value="fee-low">Sort: Fee Low→High</option>
+          <option value="fee-high">Sort: Fee High→Low</option>
+          <option value="exp">Sort: Most Experienced</option>
+        </select>
+      </div>
+      <div id="doc-list-container"></div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-column footer-brand">
+        <a href="#home" class="footer-logo nav-section-link" data-target="home">Med<span>Connect</span></a>
+        <p>
+          Bangladesh's trusted digital healthcare platform. Connecting
+          patients with verified doctors.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>For Patients</h4>
+        <p>Search Doctors</p>
+        <p>Book Appointment</p>
+        <p>My Records</p>
+        <p>Medicine Reminder</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>For Doctors</h4>
+        <p>Join Platform</p>
+        <p>Doctor Login</p>
+        <p>E-Prescription</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Contact Us</h4>
+        <p>support@medconnect.com</p>
+        <p>+880 1712-345678</p>
+        <span>Sat - Thu, 9:00 AM - 6:00 PM</span>
+      </div>
+    </div>
+
+    <div class="container footer-bottom"></div>
+  </footer>
+
+  <script src="../js/find-doctors.js"></script>
+</body>
+
+</html>
