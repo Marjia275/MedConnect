@@ -235,79 +235,168 @@ Dr. Rafiqul Islam is a renowned Cardiologist with over 12 years of experience.</
         </div>
 
         <div class="card1 mb">
-          <div class="avail-grid" id="avail-list">
-            <div class="avail-row">
-              <div class="avail-row-inner">
-                <div class="avail-top-row">
-                  <div class="day-toggle-wrap">
-                    <button
-                      class="tog on"
-                      onclick="toggleDay(this)"
-                      type="button"
-                    ></button>
-                    <input type="date" class="inp date-inp" />
-                  </div>
-                  <button
-                    class="del-btn"
-                    onclick="deleteSlot(this)"
-                    type="button"
-                  >
-                    ✕
-                  </button>
+          <div class="avail-days" id="avail-list">
+            <div class="avail-day-row" data-day="Mon">
+              <div class="avail-day-label">
+                <button
+                  class="tog on"
+                  onclick="toggleDay(this)"
+                  type="button"
+                ></button>
+                <span class="day-name">Monday</span>
+              </div>
+              <div class="avail-day-times">
+                <div class="tgrp">
+                  <label>From</label>
+                  <input class="inp tinp" type="time" value="10:00" />
                 </div>
-                <div class="time-group">
-                  <div class="tgrp">
-                    <label>From</label>
-                    <input class="inp tinp" type="time" value="10:00" />
-                  </div>
-                  <span class="tsep">to</span>
-                  <div class="tgrp">
-                    <label>To</label>
-                    <input class="inp tinp" type="time" value="14:00" />
-                  </div>
+                <span class="tsep">to</span>
+                <div class="tgrp">
+                  <label>To</label>
+                  <input class="inp tinp" type="time" value="14:00" />
                 </div>
               </div>
             </div>
 
-            <div class="avail-row">
-              <div class="avail-row-inner">
-                <div class="avail-top-row">
-                  <div class="day-toggle-wrap">
-                    <button
-                      class="tog on"
-                      onclick="toggleDay(this)"
-                      type="button"
-                    ></button>
-                    <input type="date" class="inp date-inp" />
-                  </div>
-                  <button
-                    class="del-btn"
-                    onclick="deleteSlot(this)"
-                    type="button"
-                  >
-                    ✕
-                  </button>
+            <div class="avail-day-row" data-day="Tue">
+              <div class="avail-day-label">
+                <button
+                  class="tog on"
+                  onclick="toggleDay(this)"
+                  type="button"
+                ></button>
+                <span class="day-name">Tuesday</span>
+              </div>
+              <div class="avail-day-times">
+                <div class="tgrp">
+                  <label>From</label>
+                  <input class="inp tinp" type="time" value="10:00" />
                 </div>
-                <div class="time-group">
-                  <div class="tgrp">
-                    <label>From</label>
-                    <input class="inp tinp" type="time" value="17:00" />
-                  </div>
-                  <span class="tsep">to</span>
-                  <div class="tgrp">
-                    <label>To</label>
-                    <input class="inp tinp" type="time" value="20:00" />
-                  </div>
+                <span class="tsep">to</span>
+                <div class="tgrp">
+                  <label>To</label>
+                  <input class="inp tinp" type="time" value="14:00" />
+                </div>
+              </div>
+            </div>
+
+            <div class="avail-day-row" data-day="Wed">
+              <div class="avail-day-label">
+                <button
+                  class="tog on"
+                  onclick="toggleDay(this)"
+                  type="button"
+                ></button>
+                <span class="day-name">Wednesday</span>
+              </div>
+              <div class="avail-day-times">
+                <div class="tgrp">
+                  <label>From</label>
+                  <input class="inp tinp" type="time" value="10:00" />
+                </div>
+                <span class="tsep">to</span>
+                <div class="tgrp">
+                  <label>To</label>
+                  <input class="inp tinp" type="time" value="14:00" />
+                </div>
+              </div>
+            </div>
+
+            <div class="avail-day-row" data-day="Thu">
+              <div class="avail-day-label">
+                <button
+                  class="tog on"
+                  onclick="toggleDay(this)"
+                  type="button"
+                ></button>
+                <span class="day-name">Thursday</span>
+              </div>
+              <div class="avail-day-times">
+                <div class="tgrp">
+                  <label>From</label>
+                  <input class="inp tinp" type="time" value="10:00" />
+                </div>
+                <span class="tsep">to</span>
+                <div class="tgrp">
+                  <label>To</label>
+                  <input class="inp tinp" type="time" value="14:00" />
+                </div>
+              </div>
+            </div>
+
+            <div class="avail-day-row" data-day="Fri">
+              <div class="avail-day-label">
+                <button
+                  class="tog on"
+                  onclick="toggleDay(this)"
+                  type="button"
+                ></button>
+                <span class="day-name">Friday</span>
+              </div>
+              <div class="avail-day-times">
+                <div class="tgrp">
+                  <label>From</label>
+                  <input class="inp tinp" type="time" value="17:00" />
+                </div>
+                <span class="tsep">to</span>
+                <div class="tgrp">
+                  <label>To</label>
+                  <input class="inp tinp" type="time" value="20:00" />
+                </div>
+              </div>
+            </div>
+
+            <div class="avail-day-row" data-day="Sat">
+              <div class="avail-day-label">
+                <button
+                  class="tog off"
+                  onclick="toggleDay(this)"
+                  type="button"
+                ></button>
+                <span class="day-name">Saturday</span>
+              </div>
+              <div class="avail-day-times dis">
+                <div class="tgrp">
+                  <label>From</label>
+                  <input class="inp tinp" type="time" value="09:00" disabled />
+                </div>
+                <span class="tsep">to</span>
+                <div class="tgrp">
+                  <label>To</label>
+                  <input class="inp tinp" type="time" value="13:00" disabled />
+                </div>
+              </div>
+            </div>
+
+            <div class="avail-day-row" data-day="Sun">
+              <div class="avail-day-label">
+                <button
+                  class="tog off"
+                  onclick="toggleDay(this)"
+                  type="button"
+                ></button>
+                <span class="day-name">Sunday</span>
+              </div>
+              <div class="avail-day-times dis">
+                <div class="tgrp">
+                  <label>From</label>
+                  <input class="inp tinp" type="time" value="09:00" disabled />
+                </div>
+                <span class="tsep">to</span>
+                <div class="tgrp">
+                  <label>To</label>
+                  <input class="inp tinp" type="time" value="13:00" disabled />
                 </div>
               </div>
             </div>
           </div>
 
           <div class="avail-footer">
-            <button class="btn-add" onclick="addSlot()">
-              ＋ Add Time Slot
-            </button>
-            <button class="btn1" onclick="saveSection('availability')">
+            <button
+              class="btn1"
+              onclick="saveSection('availability')"
+              style="margin-left: auto"
+            >
               Save Availability
             </button>
           </div>

@@ -37,19 +37,19 @@ function saveSection(s) {
 
 function toggleDay(btn) {
   var isOn = btn.classList.contains("on");
-  var inner = btn.closest(".avail-row-inner");
-  var timeGroup = inner.querySelector(".time-group");
-  var inputs = inner.querySelectorAll('input[type="time"]');
+  var row = btn.closest(".avail-day-row");
+  var times = row.querySelector(".avail-day-times");
+  var inputs = times.querySelectorAll('input[type="time"]');
 
   if (isOn) {
     btn.classList.replace("on", "off");
-    timeGroup.classList.add("dis");
+    times.classList.add("dis");
     inputs.forEach(function (i) {
       i.disabled = true;
     });
   } else {
     btn.classList.replace("off", "on");
-    timeGroup.classList.remove("dis");
+    times.classList.remove("dis");
     inputs.forEach(function (i) {
       i.disabled = false;
     });

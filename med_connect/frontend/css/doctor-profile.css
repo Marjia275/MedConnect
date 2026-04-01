@@ -590,6 +590,59 @@ textarea {
   gap: 8px;
 }
 
+.avail-days {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.avail-day-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 18px;
+  transition: border-color 0.2s;
+}
+
+.avail-day-row:hover {
+  border-color: #4db6a2;
+}
+
+.avail-day-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 130px;
+  flex-shrink: 0;
+}
+
+.day-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.avail-day-times {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex: 1;
+}
+
+.avail-day-times.dis {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.avail-grid {
+  display: none;
+}
+
 .day-toggle-wrap {
   display: flex;
   align-items: center;
@@ -897,6 +950,10 @@ textarea {
   .avail-grid {
     grid-template-columns: 1fr;
   }
+
+  .avail-day-label {
+    width: 110px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -939,6 +996,17 @@ textarea {
   }
   .day-toggle-wrap {
     flex: 1;
+  }
+  .avail-day-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .avail-day-label {
+    width: auto;
+  }
+  .avail-day-times {
+    width: 100%;
   }
 }
 
