@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Book Appointment — MedConnect</title>
+  <link href="../css/appointment.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/27840f33e9.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <a class="navbar-logo" aria-label="MedConnect home" href="dashboard.html">
+      Med<span>Connect</span>
+    </a>
+    <div class="navbar-links">
+
+      <a href="find-doctors.html">Find Doctors</a>
+      <a href="dashboard.html">My Dashboard</a>
+      <div class="navbar-user">
+        <div class="navbar-avatar">👤</div>
+        <a href="dashboard.html">Rahim Uddin</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+
+    <a href="find-doctors.html">Find Doctors</a> ›
+    <span id="bc-name" style="color:var(--navy);font-weight:600;">Book Appointment</span>
+  </div>
+  <div class="appt-container">
+
+    <div class="steps-indicator">
+      <div class="step-indicator">
+        <div class="step-circle done" id="step1-circle">✓</div>
+        <span class="step-label active" id="step1-label">Select Doctor</span>
+      </div>
+      <div class="step-connector done" id="conn1"></div>
+      <div class="step-indicator">
+        <div class="step-circle active" id="step2-circle">2</div>
+        <span class="step-label active" id="step2-label">Pick Date &amp; Time</span>
+      </div>
+      <div class="step-connector" id="conn2"></div>
+      <div class="step-indicator">
+        <div class="step-circle" id="step3-circle">3</div>
+        <span class="step-label" id="step3-label">Your Details</span>
+      </div>
+      <div class="step-connector" id="conn3"></div>
+      <div class="step-indicator">
+        <div class="step-circle" id="step4-circle">4</div>
+        <span class="step-label" id="step4-label">Confirm &amp; Pay</span>
+      </div>
+    </div>
+
+    <div class="doctor-profile-card" id="doctor-profile">
+
+    </div>
+
+    <div class="appt-layout">
+      <div class="booking-card">
+        <div class="booking-section-title"> <i class="fa-regular fa-calendar-days" style="color: #0a7d6c"></i> Select
+          Appointment Date</div>
+
+        <div class="date-scroll" id="date-row">
+
+        </div>
+
+        <div class="time-slots-section">
+          <h3><i class="fa-regular fa-alarm-clock" style="color: rgb(1, 24, 20);"></i> Chamber Time</h3>
+          <div class="slots-grid" id="slots-grid">
+            <div class="slot-no-slots"> Select a date first</div>
+          </div>
+        </div>
+        <hr style="border:none;border-top:1px solid var(--border);margin-bottom:28px;" />
+
+        <div class="booking-section-title"> Your Information</div>
+        <div class="patient-form">
+          <div class="form-row mb-16">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input class="input" id="p-name" placeholder="Your full name" value="Rahim Uddin" />
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input class="input" id="p-phone" placeholder="01XXXXXXXXX" value="01712345678" />
+            </div>
+          </div>
+          <div class="form-row mb-16">
+            <div class="form-group">
+              <label>Age</label>
+              <input class="input" id="p-age" max="120" min="1" placeholder="e.g. 35" type="number" />
+            </div>
+            <div class="form-group">
+              <label>Gender</label>
+              <select class="select" id="p-gender">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Chief Complaint / Reason for Visit</label>
+            <textarea class="input textarea" id="p-complaint"
+              placeholder="Briefly describe your symptoms or reason for the appointment..." rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="fee-summary">
+          <div class="fee-row"><span>Consultation Fee</span><span id="fee-consult">৳0</span></div>
+          <div class="fee-row"><span>Platform Service Fee</span><span>৳30</span></div>
+          <div class="fee-row total"><span>Total Payable</span><span id="fee-total">৳30</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sticky-bar" id="sticky-bar">
+
+    <div class="sticky-bar-doc" id="sticky-doc-info">
+      <div class="sticky-bar-avatar" id="sticky-avatar" style="background:#e7f6f6;">👨‍⚕️</div>
+      <div>
+        <div class="sticky-bar-doc-name" id="sticky-doc-name">Loading...</div>
+        <div class="sticky-bar-doc-spec" id="sticky-doc-spec"></div>
+      </div>
+    </div>
+    <div class="sticky-divider"></div>
+
+    <div class="sticky-bar-item">
+      <div class="sticky-bar-label"><i class="fa-regular fa-calendar-days" style="color: #0a7d6c"></i> Date</div>
+      <div class="sticky-bar-val empty" id="sum-date">Not selected</div>
+    </div>
+    <div class="sticky-divider"></div>
+
+    <div class="sticky-bar-item">
+      <div class="sticky-bar-label"><i class="fa-regular fa-alarm-clock" style="color: rgb(1, 24, 20);"></i> Time</div>
+      <div class="sticky-bar-val empty" id="sum-time">Not selected</div>
+    </div>
+    <div class="sticky-divider"></div>
+
+    <div class="sticky-bar-item">
+      <div class="sticky-bar-label"><i class="fa-solid fa-location-dot" style="color: rgb(236, 48, 10);"></i> Location
+      </div>
+      <div class="sticky-bar-val" id="sum-location">—</div>
+    </div>
+    <div class="sticky-divider"></div>
+
+    <div class="sticky-bar-item">
+      <div class="sticky-bar-label">Total Fee</div>
+      <div class="sticky-bar-fee" id="sum-fee">৳30</div>
+    </div>
+
+    <div class="sticky-bar-actions">
+      <!-- <div style="font-size:11px;color:var(--gray);text-align:right;line-height:1.5;">🔒 Confirmed<br />after approval
+      </div> -->
+      <button class="btn btn-primary btn-lg" onclick="showConfirmModal()">
+        Confirm &amp; Book →
+      </button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal-box">
+      <div class="modal-icon">📨</div>
+      <div class="modal-title">Request Submitted!</div>
+      <div class="modal-text">Your appointment request has been sent to the doctor. Please wait — the doctor will review
+        your request and confirm or reject it.</div>
+      <div
+        style="background:var(--yellow-soft);border:1px solid #f0d080;border-radius:14px;padding:18px 20px;margin-bottom:24px;text-align:left;">
+        <div
+          style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--yellow-text);margin-bottom:10px;">
+          What happens next?</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.9;">
+          <div><i class="fa-solid fa-hourglass-half" style="color: rgb(1, 24, 20);"></i>  Your request shows as
+            <strong>Pending</strong> in your dashboard</div>
+          <div><i class="fa-solid fa-check" style="color: rgb(1, 24, 20);"></i>  If accepted, you will see a <strong>Pay
+              to Confirm</strong> button</div>
+          <div><i class="fa-solid fa-credit-card" style="color: rgb(1, 24, 20);"></i>  After payment, your appointment
+            is <strong>Confirmed</strong></div>
+        </div>
+      </div>
+      <div id="modal-details"
+        style="font-size:13px;color:var(--gray);margin-bottom:20px;line-height:1.6;background:var(--gray-light);border-radius:10px;padding:14px;">
+      </div>
+      <div class="modal-btns">
+        <a class="btn btn-primary btn-lg" href="dashboard.html">View in Dashboard →</a>
+        <button class="btn btn-ghost" onclick="closeModal()">Book Another</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/appointment.js"></script>
+</body>
+
+</html>
