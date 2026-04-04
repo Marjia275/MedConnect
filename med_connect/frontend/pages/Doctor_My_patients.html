@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>My Patients</title>
+    <link href="../css/Doctor_My_patients.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/27840f33e9.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <button class="hamburger" id="hamburger-btn" onclick="toggleDrawer()">
+        ☰
+      </button>
+      <a class="navbar-logo" href="#">Med<span>Connect</span></a>
+      <div class="navbar-links">
+        <div class="navbar-user">
+          <div class="navbar-avatar">
+            <i class="fa-solid fa-stethoscope"></i>
+          </div>
+          Dr. Rafiqul Islam
+        </div>
+      </div>
+    </nav>
+
+    <div class="app-layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar-lg">
+            <i class="fa-solid fa-stethoscope"></i>
+          </div>
+          <div>
+            <div class="sidebar-user-name">Dr. Rafiqul Islam</div>
+            <div class="sidebar-user-role">Cardiologist</div>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a class="sidebar-item" href="doctor-dashboard.html"
+            ><span class="icon"><i class="fa-solid fa-house-medical"></i></span
+            >Dashboard</a
+          >
+          <a class="sidebar-item active" href="Doctor_My_patients.html"
+            ><span class="icon"><i class="fa-solid fa-user-group"></i></span>My
+            Patients<span class="sidebar-badge">8</span></a
+          >
+          <a class="sidebar-item" href="doctor-profile.html"
+            ><span class="icon"><i class="fa-regular fa-circle-user"></i></span
+            >My Profile</a
+          >
+          <a class="sidebar-item" href="doctor-assistant.html"
+            ><span class="icon"><i class="fa-solid fa-user-pen"></i></span
+            >Assistant Profile</a
+          >
+          <a class="sidebar-item" href="#" onclick="confirmLogout(event)"
+            ><span class="icon"><i class="fa-solid fa-power-off"></i></span
+            >Logout</a
+          >
+        </nav>
+      </aside>
+
+      <div class="workspace">
+        <div class="patients-main">
+          <div class="page-header">
+            <div class="page-title">My Patients</div>
+            <div class="page-sub" id="today-date">Loading…</div>
+          </div>
+
+          <div class="search-bar-wrap">
+            <input
+              class="input-search"
+              id="patient-search"
+              placeholder="Search patient by name…"
+              oninput="searchPatients(this.value)"
+            />
+          </div>
+          <div class="newpr">
+            <button class="btn-new-rx" onclick="openNewRxModal()">
+              + New Prescription
+            </button>
+          </div>
+
+          <div class="section-header-row">
+            <div class="section-label">Today's Patients</div>
+            <span class="section-count" id="today-count">8 appointments</span>
+          </div>
+
+          <div class="patient-list" id="today-patient-list">
+            <div
+              class="patient-card"
+              onclick="selectPatient('ayesha')"
+              data-name="Ayesha Khatun"
+              data-id="ayesha"
+            >
+              <div class="pc-serial">#01</div>
+              <div
+                class="pc-avatar"
+                style="background: #e8f6f3; color: #0b8a75"
+              >
+                A
+              </div>
+              <div class="pc-info">
+                <div class="pc-name">Ayesha Khatun</div>
+                <div class="pc-meta">Cardiologist visit · 5:00 PM</div>
+              </div>
+              <span class="badge-today">Today</span
+              ><span class="pc-arrow">›</span>
+            </div>
+
+            <div
+              class="patient-card"
+              onclick="selectPatient('mahmudul')"
+              data-name="Mahmudul Hasan"
+              data-id="mahmudul"
+            >
+              <div class="pc-serial">#02</div>
+              <div
+                class="pc-avatar"
+                style="background: #fff0eb; color: #f05a28"
+              >
+                M
+              </div>
+              <div class="pc-info">
+                <div class="pc-name">Mahmudul Hasan</div>
+                <div class="pc-meta">Follow-up visit · 5:15 PM</div>
+              </div>
+              <span class="badge-today">Today</span
+              ><span class="pc-arrow">›</span>
+            </div>
+
+            <div
+              class="patient-card"
+              onclick="selectPatient('razia')"
+              data-name="Razia Sultana"
+              data-id="razia"
+            >
+              <div class="pc-serial">#03</div>
+              <div
+                class="pc-avatar"
+                style="background: #eef2ff; color: #5c6bc0"
+              >
+                R
+              </div>
+              <div class="pc-info">
+                <div class="pc-name">Razia Sultana</div>
+                <div class="pc-meta">New consultation · 5:30 PM</div>
+              </div>
+              <span class="badge-today">Today</span
+              ><span class="pc-arrow">›</span>
+            </div>
+
+            <div
+              class="patient-card"
+              onclick="selectPatient('nazrul')"
+              data-name="Nazrul Islam"
+              data-id="nazrul"
+            >
+              <div class="pc-serial">#04</div>
+              <div
+                class="pc-avatar"
+                style="background: #fff9ec; color: #b8860b"
+              >
+                N
+              </div>
+              <div class="pc-info">
+                <div class="pc-name">Nazrul Islam</div>
+                <div class="pc-meta">Heart failure follow-up · 5:45 PM</div>
+              </div>
+              <span class="badge-today">Today</span
+              ><span class="pc-arrow">›</span>
+            </div>
+
+            <div
+              class="patient-card"
+              onclick="selectPatient('tanvir')"
+              data-name="Tanvir Ahmed"
+              data-id="tanvir"
+            >
+              <div class="pc-serial">#05</div>
+              <div
+                class="pc-avatar"
+                style="background: #e8f6f3; color: #0b8a75"
+              >
+                T
+              </div>
+              <div class="pc-info">
+                <div class="pc-name">Tanvir Ahmed</div>
+                <div class="pc-meta">Chest pain evaluation · 6:00 PM</div>
+              </div>
+              <span class="badge-today">Today</span
+              ><span class="pc-arrow">›</span>
+            </div>
+
+            <div
+              class="patient-card"
+              onclick="selectPatient('farhana')"
+              data-name="Farhana Begum"
+              data-id="farhana"
+            >
+              <div class="pc-serial">#06</div>
+              <div
+                class="pc-avatar"
+                style="background: #f3e8ff; color: #7c3aed"
+              >
+                F
+              </div>
+              <div class="pc-info">
+                <div class="pc-name">Farhana Begum</div>
+                <div class="pc-meta">Hypertension check · 6:15 PM</div>
+              </div>
+              <span class="badge-today">Today</span
+              ><span class="pc-arrow">›</span>
+            </div>
+
+            <div
+              class="patient-card"
+              onclick="selectPatient('karim')"
+              data-name="Karim Miah"
+              data-id="karim"
+            >
+              <div class="pc-serial">#07</div>
+              <div
+                class="pc-avatar"
+                style="background: #e8f0fe; color: #3a59c0"
+              >
+                K
+              </div>
+              <div class="pc-info">
+                <div class="pc-name">Karim Miah</div>
+                <div class="pc-meta">ECG review · 6:30 PM</div>
+              </div>
+              <span class="badge-today">Today</span
+              ><span class="pc-arrow">›</span>
+            </div>
+
+            <div
+              class="patient-card"
+              onclick="selectPatient('jamal')"
+              data-name="Jamal Hossain"
+              data-id="jamal"
+            >
+              <div class="pc-serial">#08</div>
+              <div
+                class="pc-avatar"
+                style="background: #fff0eb; color: #f05a28"
+              >
+                J
+              </div>
+              <div class="pc-info">
+                <div class="pc-name">Jamal Hossain</div>
+                <div class="pc-meta">Routine check-up · 6:45 PM</div>
+              </div>
+              <span class="badge-today">Today</span
+              ><span class="pc-arrow">›</span>
+            </div>
+          </div>
+
+          <div id="no-results" style="display: none" class="no-results-msg">
+            <div style="font-size: 40px; margin-bottom: 10px"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div>
+              No patients found for "<span id="no-results-query"></span>"
+            </div>
+          </div>
+
+          <div class="recent-rx-card" id="recent-rx-section">
+            <div class="card-title">
+              Recent Prescriptions
+              <span style="font-size: 13px; color: #8899aa; font-weight: 600"
+                >Last 30 days</span
+              >
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Diagnosis</th>
+                    <th>Medicines</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-rx-tbody">
+                  <tr>
+                    <td>
+                      <div class="td-patient">
+                        <div
+                          class="mini-av"
+                          style="background: #e8f6f3; color: #0b8a75"
+                        >
+                          A
+                        </div>
+                        <strong>Ayesha Khatun</strong>
+                      </div>
+                    </td>
+                    <td>10 Jan 2026</td>
+                    <td>Hypertensive Heart Disease</td>
+                    <td style="color: #8899aa">Amlodipine 5mg, Ramipril 5mg</td>
+                    <td>
+                      <button
+                        class="btn-view-rx"
+                        onclick="selectPatient('ayesha')"
+                      >
+                        View Rx
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="td-patient">
+                        <div
+                          class="mini-av"
+                          style="background: #fff0eb; color: #f05a28"
+                        >
+                          M
+                        </div>
+                        <strong>Mahmudul Hasan</strong>
+                      </div>
+                    </td>
+                    <td>5 Jan 2026</td>
+                    <td>Stable Angina Pectoris</td>
+                    <td style="color: #8899aa">
+                      Isosorbide 20mg, Aspirin 75mg
+                    </td>
+                    <td>
+                      <button
+                        class="btn-view-rx"
+                        onclick="selectPatient('mahmudul')"
+                      >
+                        View Rx
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="td-patient">
+                        <div
+                          class="mini-av"
+                          style="background: #eef2ff; color: #5c6bc0"
+                        >
+                          R
+                        </div>
+                        <strong>Razia Sultana</strong>
+                      </div>
+                    </td>
+                    <td>28 Dec 2025</td>
+                    <td>Atrial Fibrillation</td>
+                    <td style="color: #8899aa">
+                      Metoprolol 50mg, Warfarin 5mg
+                    </td>
+                    <td>
+                      <button
+                        class="btn-view-rx"
+                        onclick="selectPatient('razia')"
+                      >
+                        View Rx
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="td-patient">
+                        <div
+                          class="mini-av"
+                          style="background: #fff9ec; color: #b8860b"
+                        >
+                          N
+                        </div>
+                        <strong>Nazrul Islam</strong>
+                      </div>
+                    </td>
+                    <td>20 Dec 2025</td>
+                    <td>Heart Failure (NYHA II)</td>
+                    <td style="color: #8899aa">
+                      Furosemide 40mg, Digoxin 0.25mg
+                    </td>
+                    <td>
+                      <button
+                        class="btn-view-rx"
+                        onclick="selectPatient('nazrul')"
+                      >
+                        View Rx
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-panel" id="detail-panel">
+          <div id="panel-empty" class="panel-empty-state">
+            <div style="font-size: 56px; margin-bottom: 14px">
+              <i class="fa-solid fa-angle-left"></i>
+            </div>
+            <div
+              style="
+                font-family: &quot;Sora&quot;, sans-serif;
+                font-size: 16px;
+                font-weight: 700;
+                color: #18324c;
+                margin-bottom: 8px;
+              "
+            >
+              Select a Patient
+            </div>
+            <div style="font-size: 13px; color: #8899aa; line-height: 1.7">
+              Click any patient from the list to view their details and
+              prescription history here.
+            </div>
+          </div>
+
+          <div id="panel-content" style="display: none">
+            <div class="panel-patient-header">
+              <div class="panel-avatar" id="panel-avatar">A</div>
+              <div>
+                <div class="panel-name" id="panel-name">Ayesha Khatun</div>
+                <div class="panel-username" id="panel-username">
+                  @ayesha_k · Patient
+                </div>
+              </div>
+              <button class="btn-prescribe" onclick="openNewRxModal()">
+                + Prescribe
+              </button>
+            </div>
+
+            <div class="panel-info-grid">
+              <div class="info-cell">
+                <div class="info-label">AGE</div>
+                <div class="info-val" id="panel-age">34 yrs</div>
+              </div>
+              <div class="info-cell">
+                <div class="info-label">BLOOD</div>
+                <div class="info-val" id="panel-blood" style="color: #f05a28">
+                  B+
+                </div>
+              </div>
+              <div class="info-cell">
+                <div class="info-label">GENDER</div>
+                <div class="info-val" id="panel-gender">Female</div>
+              </div>
+              <div class="info-cell">
+                <div class="info-label">TOTAL VISITS</div>
+                <div class="info-val" id="panel-visits">3</div>
+              </div>
+              <div class="info-cell">
+                <div class="info-label">PHONE</div>
+                <div class="info-val" id="panel-phone">01712-345678</div>
+              </div>
+              <div class="info-cell">
+                <div class="info-label">ALLERGIES</div>
+                <div class="info-val" id="panel-allergies">None known</div>
+              </div>
+            </div>
+
+            <div class="panel-section-label">Prescription History</div>
+            <div id="panel-rx-list"></div>
+
+            <button class="btn-add-rx" onclick="openNewRxModal()">
+              + Add New Prescription
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="rx-modal" onclick="handleRxBackdrop(event)">
+      <div class="rx-modal-box" id="rx-modal-box">
+        <div class="rx-modal-header" id="rx-drag-handle">
+          <div>
+            <div class="rx-modal-title" id="rx-modal-title">
+              New E-Prescription
+            </div>
+            <div class="rx-modal-sub" id="rx-modal-sub">
+              Patient: Ayesha Khatun
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px">
+            <span style="font-size: 11px; color: rgba(255, 255, 255, 0.3)"
+              >⠿ Drag to move</span
+            >
+            <button class="modal-close-btn" onclick="closeRxModal()">✕</button>
+          </div>
+        </div>
+        <div class="rx-modal-body">
+          <input type="hidden" id="rx-edit-id" value="" />
+          <div class="rx-grid-2">
+            <div class="form-group">
+              <label>Chief Complaint</label
+              ><input
+                class="form-input"
+                id="rx-complaint"
+                placeholder="e.g. Chest pain, breathlessness…"
+              />
+            </div>
+            <div class="form-group">
+              <label>Diagnosis</label
+              ><input
+                class="form-input"
+                id="rx-diagnosis"
+                placeholder="e.g. Hypertensive Heart Disease"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Medicines</label>
+            <div class="med-table-header">
+              <span>Medicine Name</span><span>Dose</span><span>Frequency</span
+              ><span>Duration</span><span></span>
+            </div>
+            <div id="med-rows"></div>
+            <button class="add-med-btn" onclick="addMedRow()">
+              + Add Medicine
+            </button>
+          </div>
+          <div class="rx-grid-2">
+            <div class="form-group">
+              <label>Tests Advised</label
+              ><input
+                class="form-input"
+                id="rx-tests"
+                placeholder="e.g. ECG, CBC, Lipid Profile…"
+              />
+            </div>
+            <div class="form-group">
+              <label>Follow-Up</label
+              ><input
+                class="form-input"
+                id="rx-followup"
+                placeholder="e.g. 3 weeks, bring MRI report"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Doctor's Notes</label
+            ><textarea
+              class="form-textarea"
+              id="rx-notes"
+              placeholder="Additional notes or instructions for the patient…"
+            ></textarea>
+          </div>
+        </div>
+        <div class="rx-modal-footer">
+          <button class="btn-cancel" onclick="closeRxModal()">Cancel</button>
+          <button class="btn-save-rx" onclick="savePrescription()">
+            Save Prescription
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal-overlay"
+      id="logout-modal"
+      onclick="if (event.target === this) closeLogoutModal();"
+    >
+      <div class="logout-box">
+        <div style="font-size: 52px; margin-bottom: 16px; text-align: center">
+          <i class="fa-solid fa-power-off" style="color: #18324c"></i>
+        </div>
+        <div class="logout-title">Log Out?</div>
+        <div class="logout-sub">
+          Are you sure you want to log out of MedConnect?
+        </div>
+        <div style="display: flex; gap: 12px">
+          <button class="btn-cancel-full" onclick="closeLogoutModal()">
+            Cancel
+          </button>
+          <button class="btn-danger-full" onclick="closeLogoutModal()">
+            Yes, Log Out
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="drawer-overlay"
+      id="drawer-overlay"
+      onclick="closeDrawer()"
+    ></div>
+
+    <script src="../js/Doctor_My_patients.js"></script>
+  </body>
+</html>
