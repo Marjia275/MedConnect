@@ -1,5 +1,6 @@
 var currentMode = "login";
 var currentRole = "patient";
+var API_BASE_URL = "http://localhost:5000/api/auth";
 
 function showMessage(message, type) {
   var messageBox = document.getElementById("formMessage");
@@ -44,10 +45,12 @@ function setMode(mode) {
 
   var assistantTab = document.querySelector('[data-role="assistant"]');
 
-  if (mode === "register") {
-    assistantTab.style.display = "none";
-  } else {
-    assistantTab.style.display = "flex";
+  if (assistantTab) {
+    if (mode === "register") {
+      assistantTab.style.display = "none";
+    } else {
+      assistantTab.style.display = "flex";
+    }
   }
 }
 
@@ -130,7 +133,7 @@ function checkStrength(password) {
   text.style.color = color;
 }
 
-function loginUser() {
+async function loginUser() {
   var email = document.getElementById("loginEmail").value.trim();
   var password = document.getElementById("loginPassword").value.trim();
 
@@ -141,14 +144,43 @@ function loginUser() {
     return;
   }
 
-  showMessage("Signed in successfully. Redirecting...", "success");
+  try {
+    var response = await fetch(API_BASE_URL + "/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        role: currentRole
+      })
+    });
 
-  setTimeout(function () {
-    window.location.href = "../index.html";
-  }, 1200);
+    var data = await response.json();
+
+    if (!response.ok) {
+      showMessage(data.message || "Login failed.", "error");
+      return;
+    }
+
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    showMessage("Signed in successfully. Redirecting...", "success");
+
+    setTimeout(function () {
+      if (data.user.role === "doctor") {
+        window.location.href = "./doctor-dashboard.html";
+      } else {
+        window.location.href = "./dashboard.html";
+      }
+    }, 1200);
+  } catch (error) {
+    showMessage("Cannot connect to backend server.", "error");
+  }
 }
 
-function registerUser() {
+async function registerUser() {
   var firstName = document.getElementById("firstName").value.trim();
   var lastName = document.getElementById("lastName").value.trim();
   var email = document.getElementById("registerEmail").value.trim();
@@ -186,10 +218,7 @@ function registerUser() {
   }
 
   if (!termsChecked) {
-    showMessage(
-      "Please agree to the terms before creating an account.",
-      "error",
-    );
+    showMessage("Please agree to the terms before creating an account.", "error");
     return;
   }
 
@@ -200,11 +229,42 @@ function registerUser() {
     }
   }
 
-  showMessage("Account created successfully. Please sign in.", "success");
+  try {
+    var response = await fetch(API_BASE_URL + "/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        password: password,
+        role: currentRole,
+        doctorSpecialty: doctorSpecialty,
+        doctorDegree: doctorDegree,
+        doctorBmdc: doctorBmdc
+      })
+    });
 
-  setTimeout(function () {
-    setMode("login");
-  }, 1000);
+    var data = await response.json();
+
+    if (!response.ok) {
+      showMessage(data.message || "Registration failed.", "error");
+      return;
+    }
+
+    showMessage("Account created successfully. Please sign in.", "success");
+
+    setTimeout(function () {
+      setMode("login");
+      document.getElementById("loginEmail").value = email;
+      document.getElementById("loginPassword").value = "";
+    }, 1000);
+  } catch (error) {
+    showMessage("Cannot connect to backend server.", "error");
+  }
 }
 
 function readQuery() {
