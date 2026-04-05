@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Payment — MedConnect</title>
+  <link href="../css/payment.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/27840f33e9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="navbar-logo" aria-label="MedConnect home" href="dashboard.html">
+    Med<span>Connect</span>
+  </a>
+  <div class="navbar-links">
+    <div class="navbar-user" onclick="window.location.href='dashboard.html'">
+      <div class="navbar-avatar">👤</div>
+      Rahim Uddin
+    </div>
+  </div>
+</nav>
+
+<div class="pay-container">
+
+  <div class="page-header">
+    <div class="page-title">Complete Your Payment</div>
+    <div class="page-sub">Pay the consultation fee to confirm your appointment</div>
+  </div>
+
+  <!-- Appointment summary strip -->
+  <div class="appt-summary" id="appt-summary">
+    <div class="appt-summary-avatar"><i class="fa-solid fa-user-doctor" style="color: rgb(1, 24, 20);"></i></div>
+    <div class="appt-summary-info">
+      <div class="appt-summary-doc" id="pay-doc-name">Dr. Nusrat Jahan</div>
+      <div class="appt-summary-detail" id="pay-doc-detail">Neurologist ·  28 Mar 2026 · 7:00 PM</div>
+    </div>
+    <div class="appt-summary-fee">
+      <span>Total</span>
+      <span id="pay-fee-display">৳1,030</span>
+    </div>
+  </div>
+
+  <div class="pay-card" id="pay-form-card">
+
+    <div class="pay-card-title" style="padding-bottom: 12px;">Complete Payment with bKash</div>
+   
+
+   
+    <div class="bkash-fields" id="bkash-fields">
+      <div class="bkash-banner">
+        <div class="bkash-logo"><small style="font-size: 12px;">Bkash</small></div>
+        <div class="bkash-instruction">
+          Send money to the bKash merchant number below, then enter your transaction ID.
+          <div class="bkash-number">01XXXXXXXXX</div>
+          Reference: <strong>MedConnect Payment</strong>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>bKash Transaction ID</label>
+        <input class="input" id="bkash-txn" placeholder="e.g. 8N7A6B5C4D" />
+      </div>
+      <div class="form-group">
+        <label>Your bKash Number</label>
+        <input class="input" id="bkash-number" placeholder="01XXXXXXXXX" />
+      </div>
+    </div>
+
+    <div class="fee-breakdown">
+      <div class="fee-line"><span>Consultation Fee</span><span id="fee-consult-line">৳1,000</span></div>
+      <div class="fee-line"><span>Platform Service Fee</span><span>৳30</span></div>
+      <div class="fee-line total"><span>Total Payable</span><span id="fee-total-line">৳1,030</span></div>
+    </div>
+
+    <button class="btn btn-primary btn-full btn-lg" id="pay-btn" onclick="openConfirmModal()">
+       Pay Now
+    </button>
+    <p style="text-align:center;font-size:12px;color:var(--gray);margin-top:10px;">
+      Your payment is secured and encrypted
+    </p>
+
+  </div>
+
+  <!-- Success screen — shown after confirmed payment -->
+  <div class="pay-card success-screen" id="success-screen">
+    <div class="success-icon">🎉</div>
+    <div class="success-title">Payment Confirmed!</div>
+    <div class="success-text">
+      Your payment was successful. Your appointment is now confirmed.
+      The doctor will see you at the scheduled time.
+    </div>
+    <div class="success-ticket">
+      <div class="success-ticket-label">Your Serial Number</div>
+      <div class="success-ticket-num" id="success-serial">#05</div>
+      <div class="success-ticket-note">Show this number at the clinic</div>
+    </div>
+    <div id="success-appt-detail" style="font-size:13px;color:var(--gray);background:var(--gray-light);border-radius:10px;padding:14px;margin-bottom:24px;line-height:1.8;"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="dashboard.html" class="btn btn-primary btn-lg">Go to Dashboard →</a>
+      <button class="btn btn-ghost" onclick="window.print()">🖨 Print Receipt</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Confirmation modal — shown when Pay Now is clicked -->
+<div class="modal-overlay" id="confirm-modal" onclick="if(event.target===this) closeConfirmModal()">
+  <div class="modal-box">
+    <div class="modal-icon"></div>
+    <div class="modal-title">Confirm Payment</div>
+    <div class="modal-text">Please review your payment details before confirming.</div>
+
+    <div class="modal-summary" id="modal-summary">
+      <!-- filled by JS -->
+    </div>
+
+    <div class="modal-btns">
+      <button class="btn btn-ghost" onclick="closeConfirmModal()">Cancel</button>
+      <button class="btn btn-primary btn-lg" id="modal-confirm-btn" onclick="processPayment()">
+        <i class="fa-solid fa-check" style="color: rgb(1, 24, 20);"></i> Confirm & Pay
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/payment.js"></script>
+</body>
+</html>
