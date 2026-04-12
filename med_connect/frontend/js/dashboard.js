@@ -148,8 +148,8 @@ document.addEventListener("DOMContentLoaded", function () {
       " " +
       months[now.getMonth()] +
       " " +
-      now.getFullYear() +
-      " · Here's your health overview";
+      now.getFullYear() 
+      ;
   }
 
   loadPatientDashboard();
