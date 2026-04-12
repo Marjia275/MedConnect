@@ -18,10 +18,14 @@
       </a>
       <div class="navbar-links">
         <a href="find-doctors.html">Find Doctors</a>
+
+
         <div class="navbar-user">
-          <div class="navbar-avatar">👤</div>
-          Rahim Uddin
-        </div>
+  <div class="navbar-avatar">👤</div>
+  <span id="patientName">Rahim Uddin</span>
+</div>
+
+
       </div>
     </nav>
     <div class="app-layout">
@@ -29,8 +33,12 @@
         <div class="sidebar-user">
           <div class="sidebar-avatar-lg">👤</div>
           <div>
-            <div class="sidebar-user-name">Rahim Uddin</div>
+
+           <div class="sidebar-user-name" id="patientNameSidebar">Rahim Uddin</div>
+            
+            
             <div class="sidebar-user-role">Patient</div>
+
           </div>
         </div>
         <nav class="sidebar-nav">
@@ -64,17 +72,27 @@
 
       <main class="main-content">
         <div class="page-header">
-          <div class="page-title">Good Morning, Rahim </div>
+
+          <div class="page-title">Good Morning, <span id="patientGreetingName">Rahim</span></div>
+
           <div class="page-sub" id="today-date">Loading date…</div>
         </div>
 
         <div class="profile-strip">
           <div class="profile-avatar-big">👤</div>
           <div style="flex: 1">
-            <div class="profile-name">Rahim Uddin</div>
-            <div class="profile-meta">Patient ID: MED-2024-00183 · Sylhet</div>
+
+            <div class="profile-name" id="patientProfileName">Rahim Uddin</div>
+
+            <div class="profile-meta">
+  Patient ID: <span id="patientId">MED-2024-00183</span> ·
+  <span id="patientLocation">Sylhet</span>
+</div>
+
             <div class="profile-completion">
-              <span>Profile 75% complete</span>
+
+              <span>Profile <span id="profileCompletion">75%</span> complete</span>
+
               <div class="progress-bar-wrap">
                 <div class="progress-bar-fill" style="width: 75%"></div>
               </div>
@@ -101,25 +119,33 @@
         <div class="stats-row mb-24">
           <div class="stat-card">
             <div class="stat-icon"><i class="fa-regular fa-calendar-days" style="color: rgb(9, 124, 106);"></i></div>
-            <div class="stat-val">3</div>
+
+            <div class="stat-val" id="totalAppointments">3</div>
+
             <div class="stat-label">Total Appointments</div>
             <div class="stat-change up">↑ 1 this month</div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">⏳</i></div>
-            <div class="stat-val">1</div>
+
+            <div class="stat-val" id="upcomingAppointments">1</div>
+
             <div class="stat-label">Pending Approval</div>
             <div class="stat-change neutral">Awaiting doctor</div>
           </div>
           <div class="stat-card">
             <div class="stat-icon"><i class="fa-solid fa-file-prescription" style="color: rgb(9, 124, 106);"></i></div>
-            <div class="stat-val">7</div>
+
+           <div class="stat-val" id="completedAppointments">7</div>
+
             <div class="stat-label">Prescriptions Saved</div>
             <div class="stat-change up">All time</div>
           </div>
           <div class="stat-card">
             <div class="stat-icon"><i class="fa-regular fa-alarm-clock" style="color: rgb(9, 124, 106);"></i></div>
+
             <div class="stat-val">4</div>
+
             <div class="stat-label">Active Reminders</div>
             <div class="stat-change up">Today</div>
           </div>
@@ -145,7 +171,7 @@
         </div>
 
         <div class="grid-2 mb-20" id="appointments">
-          <div class="card">
+         <div id="recentAppointmentsBody"></div>
             <div class="card-title">
               <!-- <i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i>  -->
               My Appointments
@@ -461,7 +487,7 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
+            <tbody id="allAppointmentsBody">
                 <tr>
                   <td>
                     <div style="font-weight: 700; color: var(--navy)">
