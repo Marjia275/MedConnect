@@ -56,19 +56,20 @@ const userSchema = new mongoose.Schema(
     }
   },
   { timestamps: true }
-);
+); //the user data structure
 
 userSchema.pre("save", async function () {
-  if (!this.isModified("password")) {
+  if (!this.isModified("password")) {5896
+    
     return;
   }
 
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-});
+}); //runs before saving the user and hashes the password
 
 userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
-};
+}; // compares passwrod while logging in
 
 module.exports = mongoose.model("User", userSchema);

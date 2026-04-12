@@ -51,7 +51,7 @@ const registerUser = async (req, res) => {
         degree: role === "doctor" ? doctorDegree : "",
         bmdc: role === "doctor" ? doctorBmdc : ""
       }
-    });
+    }); //saves the new user
 
     res.status(201).json({
       message: "User registered successfully",

@@ -133,6 +133,11 @@ function checkStrength(password) {
   text.style.color = color;
 }
 
+
+
+
+
+//api
 async function loginUser() {
   var email = document.getElementById("loginEmail").value.trim();
   var password = document.getElementById("loginPassword").value.trim();
@@ -155,7 +160,7 @@ async function loginUser() {
         password: password,
         role: currentRole
       })
-    });
+    }); //convert data to JSON
 
     var data = await response.json();
 
