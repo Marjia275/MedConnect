@@ -1,12 +1,14 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Patient Dashboard — MedConnect</title>
     <link href="../css/dashboard.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/27840f33e9.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/27840f33e9.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <nav class="navbar">
@@ -18,81 +20,110 @@
       </a>
       <div class="navbar-links">
         <a href="find-doctors.html">Find Doctors</a>
-
-
         <div class="navbar-user">
-  <div class="navbar-avatar">👤</div>
-  <span id="patientName">Rahim Uddin</span>
-</div>
-
-
+          <div class="navbar-avatar">👤</div>
+          <span id="patientName">Rahim Uddin</span>
+        </div>
       </div>
     </nav>
+
     <div class="app-layout">
       <aside class="sidebar">
         <div class="sidebar-user">
           <div class="sidebar-avatar-lg">👤</div>
           <div>
-
-           <div class="sidebar-user-name" id="patientNameSidebar">Rahim Uddin</div>
-            
-            
+            <div class="sidebar-user-name" id="patientNameSidebar">
+              Rahim Uddin
+            </div>
             <div class="sidebar-user-role">Patient</div>
-
           </div>
         </div>
+
         <nav class="sidebar-nav">
           <div class="sidebar-section-label">Main</div>
-          <a class="sidebar-item active" href="dashboard.html"
-            ><span class="icon"><i class="fa-solid fa-house-medical" style="color: rgb(255, 255, 255);"></i></span> Dashboard</a
-          >
-          <a class="sidebar-item" href="#appointments"
-            ><span class="icon"><i class="fa-regular fa-calendar-days" style="color: rgb(246, 246, 246);"></i></span> My Appointments
-            <span class="sidebar-badge">2</span></a
-          >
-          
+          <a class="sidebar-item active" href="dashboard.html">
+            <span class="icon"
+              ><i
+                class="fa-solid fa-house-medical"
+                style="color: rgb(255, 255, 255)"
+              ></i
+            ></span>
+            Dashboard
+          </a>
+          <a class="sidebar-item" href="#appointments">
+            <span class="icon"
+              ><i
+                class="fa-regular fa-calendar-days"
+                style="color: rgb(246, 246, 246)"
+              ></i
+            ></span>
+            My Appointments
+            <span class="sidebar-badge">2</span>
+          </a>
+
           <div class="sidebar-section-label">Health</div>
-          <a class="sidebar-item" href="#reminders"
-            ><span class="icon"><i class="fa-regular fa-alarm-clock" style="color: #f7f6f4;"></i></span> Medicine Reminder</a
-          >
-          <a class="sidebar-item" href="#records"
-            ><span class="icon"><i class="fa-solid fa-file-prescription" style="color: rgb(255, 255, 255);"></i></span> Medical Records</a
-          >
+          <a class="sidebar-item" href="#reminders">
+            <span class="icon"
+              ><i class="fa-regular fa-alarm-clock" style="color: #f7f6f4"></i
+            ></span>
+            Medicine Reminder
+          </a>
+          <a class="sidebar-item" href="#records">
+            <span class="icon"
+              ><i
+                class="fa-solid fa-file-prescription"
+                style="color: rgb(255, 255, 255)"
+              ></i
+            ></span>
+            Medical Records
+          </a>
 
           <div class="sidebar-section-label">Account</div>
           <a class="sidebar-item" href="profile.html">
-            <span class="icon"><i class="fa-regular fa-circle-user" style="color: rgb(243, 245, 245);"></i></span> My Profile</a
+            <span class="icon"
+              ><i
+                class="fa-regular fa-circle-user"
+                style="color: rgb(243, 245, 245)"
+              ></i
+            ></span>
+            My Profile
+          </a>
+          <a
+            class="sidebar-item"
+            href="register.html"
+            onclick="confirmLogout(event)"
           >
-          
-          <a class="sidebar-item" href="register.html" onclick="confirmLogout(event)">
-            <span class="icon"><i class="fa-solid fa-power-off" style="color: rgb(253, 255, 255);"></i></span> Logout</a
-          >
+            <span class="icon"
+              ><i
+                class="fa-solid fa-power-off"
+                style="color: rgb(253, 255, 255)"
+              ></i
+            ></span>
+            Logout
+          </a>
         </nav>
       </aside>
 
       <main class="main-content">
         <div class="page-header">
-
-          <div class="page-title">Good Morning, <span id="patientGreetingName">Rahim</span></div>
-
+          <div class="page-title">
+            Good Morning, <span id="patientGreetingName">Rahim</span>
+          </div>
           <div class="page-sub" id="today-date">Loading date…</div>
         </div>
 
         <div class="profile-strip">
           <div class="profile-avatar-big">👤</div>
           <div style="flex: 1">
-
             <div class="profile-name" id="patientProfileName">Rahim Uddin</div>
-
             <div class="profile-meta">
-  Patient ID: <span id="patientId">MED-2024-00183</span> ·
-  <span id="patientLocation">Sylhet</span>
-</div>
-
+              Patient ID: <span id="patientId">MED-2024-00183</span> ·
+              <span id="patientLocation">Sylhet</span>
+            </div>
             <div class="profile-completion">
-
-              <span>Profile <span id="profileCompletion">75%</span> complete</span>
-
+              <span
+                >Profile <span id="profileCompletion">75%</span> complete</span
+              >
               <div class="progress-bar-wrap">
                 <div class="progress-bar-fill" style="width: 75%"></div>
               </div>
@@ -118,34 +149,44 @@
 
         <div class="stats-row mb-24">
           <div class="stat-card">
-            <div class="stat-icon"><i class="fa-regular fa-calendar-days" style="color: rgb(9, 124, 106);"></i></div>
-
+            <div class="stat-icon">
+              <i
+                class="fa-regular fa-calendar-days"
+                style="color: rgb(9, 124, 106)"
+              ></i>
+            </div>
             <div class="stat-val" id="totalAppointments">3</div>
-
             <div class="stat-label">Total Appointments</div>
             <div class="stat-change up">↑ 1 this month</div>
           </div>
+
           <div class="stat-card">
-            <div class="stat-icon">⏳</i></div>
-
+            <div class="stat-icon">⏳</div>
             <div class="stat-val" id="upcomingAppointments">1</div>
-
             <div class="stat-label">Pending Approval</div>
             <div class="stat-change neutral">Awaiting doctor</div>
           </div>
+
           <div class="stat-card">
-            <div class="stat-icon"><i class="fa-solid fa-file-prescription" style="color: rgb(9, 124, 106);"></i></div>
-
-           <div class="stat-val" id="completedAppointments">7</div>
-
+            <div class="stat-icon">
+              <i
+                class="fa-solid fa-file-prescription"
+                style="color: rgb(9, 124, 106)"
+              ></i>
+            </div>
+            <div class="stat-val" id="completedAppointments">7</div>
             <div class="stat-label">Prescriptions Saved</div>
             <div class="stat-change up">All time</div>
           </div>
+
           <div class="stat-card">
-            <div class="stat-icon"><i class="fa-regular fa-alarm-clock" style="color: rgb(9, 124, 106);"></i></div>
-
+            <div class="stat-icon">
+              <i
+                class="fa-regular fa-alarm-clock"
+                style="color: rgb(9, 124, 106)"
+              ></i>
+            </div>
             <div class="stat-val">4</div>
-
             <div class="stat-label">Active Reminders</div>
             <div class="stat-change up">Today</div>
           </div>
@@ -153,84 +194,156 @@
 
         <div class="quick-actions mb-24">
           <a class="quick-action-card" href="find-doctors.html">
-            <div class="qa-icon"><i class="fa-brands fa-sistrix" style="color: rgb(9, 124, 106);"></i></div>
+            <div class="qa-icon">
+              <i
+                class="fa-brands fa-sistrix"
+                style="color: rgb(9, 124, 106)"
+              ></i>
+            </div>
             <div class="qa-label">Find Doctor</div>
           </a>
           <a class="quick-action-card" href="find-doctors.html">
-            <div class="qa-icon"><i class="fa-regular fa-calendar-days" style="color: rgb(9, 124, 106);"></i></div>
+            <div class="qa-icon">
+              <i
+                class="fa-regular fa-calendar-days"
+                style="color: rgb(9, 124, 106)"
+              ></i>
+            </div>
             <div class="qa-label">Book Appointment</div>
           </a>
           <a class="quick-action-card" href="#records">
-            <div class="qa-icon"><i class="fa-solid fa-file-prescription" style="color: rgb(9, 124, 106);"></i></div>
+            <div class="qa-icon">
+              <i
+                class="fa-solid fa-file-prescription"
+                style="color: rgb(9, 124, 106)"
+              ></i>
+            </div>
             <div class="qa-label">View Records</div>
           </a>
           <a class="quick-action-card" href="#reminders">
-            <div class="qa-icon"><i class="fa-regular fa-alarm-clock" style="color: rgb(9, 124, 106);"></i></div>
+            <div class="qa-icon">
+              <i
+                class="fa-regular fa-alarm-clock"
+                style="color: rgb(9, 124, 106)"
+              ></i>
+            </div>
             <div class="qa-label">Medicine Reminder</div>
           </a>
         </div>
 
-        <div class="grid-2 mb-20" id="appointments">
-         <div id="recentAppointmentsBody"></div>
+        <div class="grid-2 mb-20">
+          <div class="card" id="appointments">
             <div class="card-title">
-              <!-- <i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i>  -->
               My Appointments
-              <a class="card-title-action" href="#appointments">View All</a>
+              <a class="card-title-action" href="#all-appointments">View All</a>
             </div>
-            <div class="appt-item">
-              <div class="appt-avatar-sm"><i class="fa-solid fa-user-doctor" style="color: rgb(1, 24, 20);"></i></div>
-              <div class="appt-info">
-                <div class="appt-doc-name">Dr. Rafiqul Islam</div>
-                <div class="appt-spec">Cardiologist · Serial #04</div>
-                <div class="appt-time"><i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i> 25 Mar, 2026 · 5:00 PM</div>
+
+            <div id="recentAppointmentsBody">
+              <div class="appt-item">
+                <div class="appt-avatar-sm">
+                  <i
+                    class="fa-solid fa-user-doctor"
+                    style="color: rgb(1, 24, 20)"
+                  ></i>
+                </div>
+                <div class="appt-info">
+                  <div class="appt-doc-name">Dr. Rafiqul Islam</div>
+                  <div class="appt-spec">Cardiologist · Serial #04</div>
+                  <div class="appt-time">
+                    <i
+                      class="fa-regular fa-calendar-days"
+                      style="color: rgb(0, 0, 0)"
+                    ></i>
+                    25 Mar, 2026 · 5:00 PM
+                  </div>
+                </div>
+                <div class="appt-actions">
+                  <span class="badge badge-confirmed">✓ Confirmed</span>
+                  <button class="btn btn-ghost btn-sm">Details</button>
+                </div>
               </div>
-              <div class="appt-actions">
-                <span class="badge badge-confirmed">✓ Confirmed</span>
-                <button class="btn btn-ghost btn-sm">Details</button>
+
+              <div class="appt-item">
+                <div class="appt-avatar-sm" style="background: #fff0eb">
+                  <i
+                    class="fa-solid fa-user-doctor"
+                    style="color: rgb(1, 24, 20)"
+                  ></i>
+                </div>
+                <div class="appt-info">
+                  <div class="appt-doc-name">Dr. Nusrat Jahan</div>
+                  <div class="appt-spec">Neurologist</div>
+                  <div class="appt-time">
+                    <i
+                      class="fa-regular fa-calendar-days"
+                      style="color: rgb(0, 0, 0)"
+                    ></i>
+                    28 Mar, 2026 · 7:00 PM
+                  </div>
+                </div>
+                <div class="appt-actions">
+                  <span class="badge badge-pending">⏳ Pending</span>
+                  <button class="btn btn-ghost btn-sm">Details</button>
+                </div>
+              </div>
+
+              <div class="appt-item">
+                <div class="appt-avatar-sm" style="background: #eef2ff">
+                  <i
+                    class="fa-solid fa-user-doctor"
+                    style="color: rgb(1, 24, 20)"
+                  ></i>
+                </div>
+                <div class="appt-info">
+                  <div class="appt-doc-name">Dr. Kamal Hossain</div>
+                  <div class="appt-spec">Orthopedics · Serial #11</div>
+                  <div class="appt-time">
+                    <i
+                      class="fa-regular fa-calendar-days"
+                      style="color: rgb(0, 0, 0)"
+                    ></i>
+                    10 Jan, 2026 · 6:00 PM
+                  </div>
+                </div>
+                <div class="appt-actions">
+                  <span class="badge badge-completed">✔ Completed</span>
+                  <button class="btn btn-ghost btn-sm">View Rx</button>
+                </div>
+              </div>
+
+              <div class="appt-item">
+                <div class="appt-avatar-sm" style="background: #fff0eb">
+                  <i
+                    class="fa-solid fa-user-doctor"
+                    style="color: rgb(1, 24, 20)"
+                  ></i>
+                </div>
+                <div class="appt-info">
+                  <div class="appt-doc-name">Dr. Israt Jahan</div>
+                  <div class="appt-spec">Gastroenterologist</div>
+                  <div class="appt-time">
+                    <i
+                      class="fa-regular fa-calendar-days"
+                      style="color: rgb(0, 0, 0)"
+                    ></i>
+                    28 Mar, 2026 · 7:00 PM
+                  </div>
+                </div>
+                <div class="appt-actions">
+                  <span
+                    class="badge"
+                    style="background: #e8f0fe; color: #355ac8"
+                    >✔ Doctor Accepted</span
+                  >
+                  <a
+                    class="btn btn-primary btn-sm"
+                    href="payment.html?doctor=Dr.+Israt+Jahan&amp;spec=Gastroenterologist&amp;date=28+Mar+2026&amp;time=7:00+PM&amp;fee=1000"
+                    >Pay to Confirm</a
+                  >
+                </div>
               </div>
             </div>
-            <div class="appt-item">
-              <div class="appt-avatar-sm" style="background: #fff0eb"><i class="fa-solid fa-user-doctor" style="color: rgb(1, 24, 20);"></i></div>
-              <div class="appt-info">
-                <div class="appt-doc-name">Dr. Nusrat Jahan</div>
-                <div class="appt-spec">Neurologist</div>
-                <div class="appt-time"><i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i> 28 Mar, 2026 · 7:00 PM</div>
-              </div>
-              <div class="appt-actions">
-                <span class="badge badge-pending">⏳ Pending</span>
-                <button class="btn btn-ghost btn-sm">Details</button>
-              </div>
-            </div>
-            <div class="appt-item">
-              <div class="appt-avatar-sm" style="background: #eef2ff"><i class="fa-solid fa-user-doctor" style="color: rgb(1, 24, 20);"></i></div>
-              <div class="appt-info">
-                <div class="appt-doc-name">Dr. Kamal Hossain</div>
-                <div class="appt-spec">Orthopedics · Serial #11</div>
-                <div class="appt-time"><i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i> 10 Jan, 2026 · 6:00 PM</div>
-              </div>
-              <div class="appt-actions">
-                <span class="badge badge-completed">✔ Completed</span>
-                <button class="btn btn-ghost btn-sm">View Rx</button>
-              </div>
-            </div>
-            <div class="appt-item">
-              <div class="appt-avatar-sm" style="background: #fff0eb"><i class="fa-solid fa-user-doctor" style="color: rgb(1, 24, 20);"></i></div>
-              <div class="appt-info">
-                <div class="appt-doc-name">Dr.Israt Jahan</div>
-                <div class="appt-spec">Gastroenterologist</div>
-                <div class="appt-time"><i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i> 28 Mar, 2026 · 7:00 PM</div>
-              </div>
-              <div class="appt-actions">
-                <span class="badge" style="background: #e8f0fe; color: #355ac8"
-                  >✔ Doctor Accepted</span
-                >
-                <a
-                  class="btn btn-primary btn-sm"
-                  href="payment.html?doctor=Dr.+Israt+Jahan&amp;spec=Gastroenterologist&amp;date=28+Mar+2026&amp;time=7:00+PM&amp;fee=1000"
-                  > Pay to Confirm</a
-                >
-              </div>
-            </div>
+
             <div style="margin-top: 16px">
               <a class="btn btn-primary btn-full" href="find-doctors.html"
                 >+ Book New Appointment</a
@@ -240,10 +353,9 @@
 
           <div class="card" id="reminders">
             <div class="card-title">
-              <!-- <i class="fa-regular fa-bell" style="color: rgb(0, 10, 8);"></i>  -->
               Medicine Reminders
               <button
-                id = "disabled_btn"
+                id="disabled_btn"
                 class="btn btn-primary btn-sm"
                 onclick="showAddReminder()"
                 disabled
@@ -251,6 +363,7 @@
                 + Add
               </button>
             </div>
+
             <div class="reminder-item">
               <div class="reminder-icon"><b>⫏⫐</b></div>
               <div class="reminder-info">
@@ -262,12 +375,16 @@
               <div class="toggle-wrap">
                 <button
                   class="toggle on"
-                  onclick="toggleReminder(this)" disabled
+                  onclick="toggleReminder(this)"
+                  disabled
                 ></button>
               </div>
             </div>
+
             <div class="reminder-item">
-              <div class="reminder-icon"><i class="fa-solid fa-syringe" style="color: rgb(0, 0, 0);"></i></div>
+              <div class="reminder-icon">
+                <i class="fa-solid fa-syringe" style="color: rgb(0, 0, 0)"></i>
+              </div>
               <div class="reminder-info">
                 <div class="reminder-med">Metformin 500mg</div>
                 <div class="reminder-times">Before meals — 3x daily</div>
@@ -275,10 +392,12 @@
               <div class="toggle-wrap">
                 <button
                   class="toggle on"
-                  onclick="toggleReminder(this)" disabled
+                  onclick="toggleReminder(this)"
+                  disabled
                 ></button>
               </div>
             </div>
+
             <div class="reminder-item">
               <div class="reminder-icon"><b>⫏⫐</b></div>
               <div class="reminder-info">
@@ -290,12 +409,14 @@
               <div class="toggle-wrap">
                 <button
                   class="toggle off"
-                  onclick="toggleReminder(this)" disabled
+                  onclick="toggleReminder(this)"
+                  disabled
                 ></button>
               </div>
             </div>
+
             <div class="reminder-item">
-              <div class="reminder-icon"><b>⫏⫐</b></i></div>
+              <div class="reminder-icon"><b>⫏⫐</b></div>
               <div class="reminder-info">
                 <div class="reminder-med">Atorvastatin 10mg</div>
                 <div class="reminder-times">Night 10:00 PM</div>
@@ -303,7 +424,8 @@
               <div class="toggle-wrap">
                 <button
                   class="toggle on"
-                  onclick="toggleReminder(this)" disabled
+                  onclick="toggleReminder(this)"
+                  disabled
                 ></button>
               </div>
             </div>
@@ -312,14 +434,18 @@
 
         <div class="card mb-20" id="records">
           <div class="card-title">
-            <!-- <i class="fa-solid fa-file-circle-check" style="color: rgb(1, 24, 20);"></i>  -->
             Medical Records &amp; Prescriptions
             <a class="card-title-action" href="#records">Download All</a>
           </div>
 
           <div class="record-card">
             <div class="record-header" onclick="toggleRecord(this)">
-              <div class="record-icon"><i class="fa-solid fa-file-prescription" style="color: rgb(0, 0, 0);"></i></div>
+              <div class="record-icon">
+                <i
+                  class="fa-solid fa-file-prescription"
+                  style="color: rgb(0, 0, 0)"
+                ></i>
+              </div>
               <div>
                 <div class="record-date">10 Jan 2026</div>
                 <div class="record-doc">
@@ -377,7 +503,12 @@
 
           <div class="record-card">
             <div class="record-header" onclick="toggleRecord(this)">
-              <div class="record-icon"><i class="fa-solid fa-file-prescription" style="color: rgb(0, 11, 10);"></i></div>
+              <div class="record-icon">
+                <i
+                  class="fa-solid fa-file-prescription"
+                  style="color: rgb(0, 11, 10)"
+                ></i>
+              </div>
               <div>
                 <div class="record-date">15 Nov 2025</div>
                 <div class="record-doc">
@@ -428,7 +559,12 @@
 
           <div class="record-card">
             <div class="record-header" onclick="toggleRecord(this)">
-              <div class="record-icon"><i class="fa-solid fa-file-prescription" style="color: rgb(0, 0, 0);"></i></div>
+              <div class="record-icon">
+                <i
+                  class="fa-solid fa-file-prescription"
+                  style="color: rgb(0, 0, 0)"
+                ></i>
+              </div>
               <div>
                 <div class="record-date">04 Aug 2025</div>
                 <div class="record-doc">
@@ -471,10 +607,10 @@
 
         <div class="card" id="all-appointments">
           <div class="card-title">
-            <!-- <i class="fa-regular fa-calendar-days" style="color: rgb(0, 0, 0);"></i> -->
-             All Appointments
+            All Appointments
             <a class="card-title-action" href="find-doctors.html">+ Book New</a>
           </div>
+
           <div class="table-wrap">
             <table>
               <thead>
@@ -487,7 +623,7 @@
                   <th>Action</th>
                 </tr>
               </thead>
-            <tbody id="allAppointmentsBody">
+              <tbody id="allAppointmentsBody">
                 <tr>
                   <td>
                     <div style="font-weight: 700; color: var(--navy)">
@@ -508,7 +644,7 @@
                     <a
                       class="btn btn-primary btn-sm"
                       href="payment.html?doctor=Dr.+Israt+Jahan&amp;spec=Gastroenterologist&amp;date=28+Mar+2026&amp;time=7:00+PM&amp;fee=1000"
-                      > Pay</a
+                      >Pay</a
                     >
                   </td>
                 </tr>
@@ -616,7 +752,7 @@
     >
       <div class="modal-box" style="max-width: 400px; padding: 36px 32px">
         <div style="font-size: 52px; margin-bottom: 16px; text-align: center">
-          <i class="fa-solid fa-power-off" style="color: rgb(0, 16, 16);"></i>
+          <i class="fa-solid fa-power-off" style="color: rgb(0, 16, 16)"></i>
         </div>
         <div
           style="
@@ -647,7 +783,7 @@
           </button>
           <button
             class="btn btn-danger btn-full"
-            onclick="window.location.href='register.html'"
+            onclick="window.location.href = 'register.html'"
             style="justify-content: center"
           >
             Yes, Log Out
@@ -655,6 +791,7 @@
         </div>
       </div>
     </div>
+
     <div
       class="modal-overlay"
       id="reminder-modal"
@@ -685,7 +822,10 @@
                 font-size: 20px;
               "
             >
-              <i class="fa-regular fa-alarm-clock" style="color: rgb(0, 0, 0);"></i>
+              <i
+                class="fa-regular fa-alarm-clock"
+                style="color: rgb(0, 0, 0)"
+              ></i>
             </div>
             <div>
               <div
@@ -722,6 +862,7 @@
             ✕
           </button>
         </div>
+
         <div class="form-group">
           <label>Medicine Name</label>
           <input
@@ -730,6 +871,7 @@
             placeholder="e.g. Amlodipine 5mg"
           />
         </div>
+
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px">
           <div class="form-group">
             <label>Frequency</label>
@@ -747,6 +889,7 @@
             <input class="input" id="rem-dose" placeholder="e.g. 1 tablet" />
           </div>
         </div>
+
         <div class="form-group">
           <label>Reminder Time(s)</label>
           <input
@@ -758,6 +901,7 @@
             Separate multiple times with a comma
           </div>
         </div>
+
         <div class="form-group">
           <label>Notes (Optional)</label>
           <input
@@ -766,12 +910,14 @@
             placeholder="e.g. Take with food"
           />
         </div>
+
         <div style="display: flex; gap: 12px; margin-top: 8px">
           <button class="btn btn-ghost btn-full" onclick="closeReminderModal()">
             Cancel
           </button>
           <button class="btn btn-primary btn-full" onclick="saveReminder()">
-            <i class="fa-solid fa-pills" style="color: rgb(0, 0, 0);"></i> Save Reminder
+            <i class="fa-solid fa-pills" style="color: rgb(0, 0, 0)"></i> Save
+            Reminder
           </button>
         </div>
       </div>
@@ -784,6 +930,5 @@
     ></div>
 
     <script src="../js/dashboard.js"></script>
-
   </body>
 </html>
