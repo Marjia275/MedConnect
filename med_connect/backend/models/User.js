@@ -92,18 +92,38 @@ const userSchema = new mongoose.Schema(
       default: ""
     },
     doctorInfo: {
-      specialty: {
-        type: String,
-        default: ""
-      },
-      degree: {
-        type: String,
-        default: ""
-      },
-      bmdc: {
-        type: String,
-        default: ""
-      }
+       specialty: {
+    type: String,
+    default: ""
+  },
+  degree: {
+    type: String,
+    default: ""
+  },
+  bmdc: {
+    type: String,
+    default: ""
+  },
+  experience: {
+    type: Number,
+    default: 0
+  },
+  consultationFee: {
+    type: Number,
+    default: 0
+  },
+  chamberName: {
+    type: String,
+    default: ""
+  },
+  chamberAddress: {
+    type: String,
+    default: ""
+  },
+  about: {
+    type: String,
+    default: ""
+  }
     }
   },
   { timestamps: true }

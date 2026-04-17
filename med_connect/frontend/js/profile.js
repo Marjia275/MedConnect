@@ -61,7 +61,20 @@ function formatMemberSince(dateString) {
   if (!dateString) return "—";
   var date = new Date(dateString);
   if (isNaN(date.getTime())) return "—";
-  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   return months[date.getMonth()] + " " + date.getFullYear();
 }
 
@@ -82,7 +95,11 @@ function setText(id, value) {
 function populateProfile(patient, profileCompletion) {
   currentPatient = patient;
 
-  var fullName = ((patient.firstName || "") + " " + (patient.lastName || "")).trim();
+  var fullName = (
+    (patient.firstName || "") +
+    " " +
+    (patient.lastName || "")
+  ).trim();
 
   setText("nav-user-name", fullName || "Patient");
   setText("sidebar-user-name", fullName || "Patient");
@@ -94,7 +111,8 @@ function populateProfile(patient, profileCompletion) {
   setText("side-member-since", formatMemberSince(patient.createdAt));
 
   setText("completion-pct", (profileCompletion || 0) + "%");
-  document.getElementById("completion-fill").style.width = (profileCompletion || 0) + "%";
+  document.getElementById("completion-fill").style.width =
+    (profileCompletion || 0) + "%";
 
   setValue("f-fname", patient.firstName);
   setValue("f-lname", patient.lastName);
@@ -209,15 +227,15 @@ async function saveProfile() {
       medicalConditions: document.getElementById("f-conditions").value.trim(),
       emergencyContactName: document.getElementById("f-ename").value.trim(),
       emergencyContactRelationship: document.getElementById("f-erel").value,
-      emergencyContactPhone: document.getElementById("f-ephone").value.trim()
+      emergencyContactPhone: document.getElementById("f-ephone").value.trim(),
     };
 
     var response = await fetch(API_BASE_URL + "/profile/" + user.id, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
 
     var data = await response.json();

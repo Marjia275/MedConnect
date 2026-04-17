@@ -14,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/patient", require("./routes/patientRoutes"));
+app.use("/api/doctor", require("./routes/doctorRoutes"));
 
 app.get("/", (req, res) => {
   res.send("Backend is running");
