@@ -39,6 +39,57 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["patient", "doctor"],
       required: true
+    },    gender: {
+      type: String,
+      default: ""
+    },
+    dateOfBirth: {
+      type: String,
+      default: ""
+    },
+    bloodGroup: {
+      type: String,
+      default: ""
+    },
+    address: {
+      type: String,
+      default: ""
+    },
+    city: {
+      type: String,
+      default: ""
+    },
+    country: {
+      type: String,
+      default: "Bangladesh"
+    },
+    height: {
+      type: String,
+      default: ""
+    },
+    weight: {
+      type: String,
+      default: ""
+    },
+    allergies: {
+      type: String,
+      default: ""
+    },
+    medicalConditions: {
+      type: String,
+      default: ""
+    },
+    emergencyContactName: {
+      type: String,
+      default: ""
+    },
+    emergencyContactRelationship: {
+      type: String,
+      default: ""
+    },
+    emergencyContactPhone: {
+      type: String,
+      default: ""
     },
     doctorInfo: {
       specialty: {
@@ -59,14 +110,13 @@ const userSchema = new mongoose.Schema(
 ); //the user data structure
 
 userSchema.pre("save", async function () {
-  if (!this.isModified("password")) {5896
-    
+  if (!this.isModified("password")) {
     return;
   }
 
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-}); //runs before saving the user and hashes the password
+});//runs before saving the user and hashes the password
 
 userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
