@@ -25,6 +25,15 @@ var months = [
   "December",
 ];
 
+function formatDoctorName(name) {
+  if (!name) return "Dr. Doctor";
+  var cleanName = name.trim();
+  if (cleanName.toLowerCase().startsWith("dr.")) {
+    return cleanName;
+  }
+  return "Dr. " + cleanName;
+}
+
 function formatTodayText(total) {
   return (
     days[now.getDay()] +
@@ -118,6 +127,7 @@ function formatDoctorMeta(doctor) {
     doctor.doctorInfo && doctor.doctorInfo.experience
       ? doctor.doctorInfo.experience
       : 0;
+
   return (
     specialty +
     " · " +
@@ -125,7 +135,7 @@ function formatDoctorMeta(doctor) {
     " · " +
     experience +
     " yrs experience · ID: " +
-    doctor._id
+    String(doctor._id || doctor.id || "").slice(-8).toUpperCase()
   );
 }
 
@@ -155,11 +165,9 @@ function renderSchedule(list) {
         item.patientName ||
         (item.patient &&
           (item.patient.fullName ||
-            (
-              (item.patient.firstName || "") +
+            ((item.patient.firstName || "") +
               " " +
-              (item.patient.lastName || "")
-            ).trim())) ||
+              (item.patient.lastName || "")).trim())) ||
         "Patient";
 
       var timeText = item.appointmentTime || "Time not set";
@@ -199,10 +207,12 @@ async function loadDoctorDashboard() {
       return;
     }
 
+    var doctorId = user._id || user.id;
+
     document.getElementById("schedule-date").textContent =
       now.getDate() + " " + months[now.getMonth()] + " " + now.getFullYear();
 
-    var response = await fetch(API_BASE_URL + "/dashboard/" + user.id);
+    var response = await fetch(API_BASE_URL + "/dashboard/" + doctorId);
     var data = await response.json();
 
     if (!response.ok) {
@@ -212,22 +222,20 @@ async function loadDoctorDashboard() {
 
     var doctor = data.doctor || {};
     var stats = data.stats || {};
+    var doctorName = formatDoctorName(doctor.fullName || "Doctor");
 
     document.getElementById("today-date").textContent = formatTodayText(
-      stats.todayAppointments || 0,
+      stats.todayAppointments || 0
     );
 
-    document.getElementById("nav-doctor-name").textContent =
-      doctor.fullName || "Doctor";
-    document.getElementById("sidebar-doctor-name").textContent =
-      doctor.fullName || "Doctor";
+    document.getElementById("nav-doctor-name").textContent = doctorName;
+    document.getElementById("sidebar-doctor-name").textContent = doctorName;
     document.getElementById("sidebar-doctor-role").textContent =
       doctor.doctorInfo && doctor.doctorInfo.specialty
         ? doctor.doctorInfo.specialty
         : "Specialist";
 
-    document.getElementById("doctor-name").textContent =
-      doctor.fullName || "Doctor";
+    document.getElementById("doctor-name").textContent = doctorName;
     document.getElementById("doctor-meta").textContent =
       formatDoctorMeta(doctor);
 
@@ -247,7 +255,7 @@ async function loadDoctorDashboard() {
     document.getElementById("stat-total-patients").textContent =
       stats.totalPatients || 0;
     document.getElementById("stat-monthly-earnings").textContent = formatMoney(
-      stats.monthlyEarnings || 0,
+      stats.monthlyEarnings || 0
     );
 
     renderSchedule(data.todaySchedule || []);

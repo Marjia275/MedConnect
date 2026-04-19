@@ -1,6 +1,28 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
+const availabilitySchema = new mongoose.Schema(
+  {
+    day: {
+      type: String,
+      default: ""
+    },
+    enabled: {
+      type: Boolean,
+      default: false
+    },
+    from: {
+      type: String,
+      default: ""
+    },
+    to: {
+      type: String,
+      default: ""
+    }
+  },
+  { _id: false }
+);
+
 const userSchema = new mongoose.Schema(
   {
     firstName: {
@@ -39,7 +61,8 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["patient", "doctor"],
       required: true
-    },    gender: {
+    },
+    gender: {
       type: String,
       default: ""
     },
@@ -92,38 +115,46 @@ const userSchema = new mongoose.Schema(
       default: ""
     },
     doctorInfo: {
-       specialty: {
-    type: String,
-    default: ""
-  },
-  degree: {
-    type: String,
-    default: ""
-  },
-  bmdc: {
-    type: String,
-    default: ""
-  },
-  experience: {
-    type: Number,
-    default: 0
-  },
-  consultationFee: {
-    type: Number,
-    default: 0
-  },
-  chamberName: {
-    type: String,
-    default: ""
-  },
-  chamberAddress: {
-    type: String,
-    default: ""
-  },
-  about: {
-    type: String,
-    default: ""
-  }
+      specialty: {
+        type: String,
+        default: ""
+      },
+      degree: {
+        type: String,
+        default: ""
+      },
+      bmdc: {
+        type: String,
+        default: ""
+      },
+      experience: {
+        type: Number,
+        default: 0
+      },
+      consultationFee: {
+        type: Number,
+        default: 0
+      },
+      maxPatientsPerDay: {
+        type: Number,
+        default: 0
+      },
+      chamberName: {
+        type: String,
+        default: ""
+      },
+      chamberAddress: {
+        type: String,
+        default: ""
+      },
+      about: {
+        type: String,
+        default: ""
+      },
+      availability: {
+        type: [availabilitySchema],
+        default: []
+      }
     }
   },
   { timestamps: true }
@@ -136,7 +167,7 @@ userSchema.pre("save", async function () {
 
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-});//runs before saving the user and hashes the password
+}); //runs before saving the user and hashes the password
 
 userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
