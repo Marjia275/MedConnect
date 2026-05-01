@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Admin Dashboard — MedConnect</title>
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeSidebar()"></div>
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="brand">Med<span>Connect</span></div>
+        <div class="tag"><i class="fa-solid fa-shield-halved"></i> Admin Panel</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+        <a class="nav-link active" href="admin-dashboard.html"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a class="nav-link" href="admin-users.html"><i class="fa-solid fa-users"></i> All Users</a>
+        <a class="nav-link" href="admin-doctors.html"><i class="fa-solid fa-user-doctor"></i> Doctor Approval <span
+            class="badge-count" id="pending-count">0</span></a>
+        <a class="nav-link" href="admin-assistants.html"><i class="fa-solid fa-user-nurse"></i> Assistants</a>
+        <div class="nav-section-label">Reports</div>
+        <a class="nav-link" href="admin-reports.html"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+        <a class="nav-link" href="admin-appointments.html"><i class="fa-solid fa-calendar-check"></i> Appointments</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="admin-info">
+          <div class="admin-avatar">🛡️</div>
+          <div>
+            <div class="admin-name" id="admin-name">Admin</div>
+            <div class="admin-role">System Administrator</div>
+          </div>
+        </div>
+        <button class="btn-logout" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main-content">
+      <div class="topbar">
+        <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+        <div class="topbar-title">Dashboard Overview</div>
+        <div class="topbar-right">
+          <div class="topbar-time" id="topbar-date"></div>
+        </div>
+      </div>
+
+      <div class="page-body">
+        <!-- Stats -->
+        <div class="stat-grid" id="stat-grid">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#E8F6F3;color:#0B8A75"><i class="fa-solid fa-users"></i></div>
+            <div>
+              <div class="stat-val" id="s-patients">—</div>
+              <div class="stat-label">Total Patients</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#E8F0FE;color:#3A59C0"><i class="fa-solid fa-user-doctor"></i>
+            </div>
+            <div>
+              <div class="stat-val" id="s-doctors">—</div>
+              <div class="stat-label">Active Doctors</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#FFF8E1;color:#B07D00"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <div class="stat-val" id="s-pending">—</div>
+              <div class="stat-label">Pending Approvals</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#FFF0EB;color:#F05A28"><i class="fa-solid fa-calendar-day"></i>
+            </div>
+            <div>
+              <div class="stat-val" id="s-today">—</div>
+              <div class="stat-label">Today's Appointments</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#D4EDDA;color:#1B7A3E"><i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <div>
+              <div class="stat-val" id="s-completed">—</div>
+              <div class="stat-label">Completed</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#E8F6F3;color:#0B8A75"><i
+                class="fa-solid fa-bangladeshi-taka-sign"></i></div>
+            <div>
+              <div class="stat-val" id="s-revenue">—</div>
+              <div class="stat-label">Total Revenue</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <!-- Recent Users -->
+          <div class="card">
+            <div class="card-header">
+              <h3><i class="fa-solid fa-user-plus" style="color:var(--teal)"></i> Recent Registrations</h3>
+              <a href="admin-users.html" class="btn btn-ghost btn-sm">View All</a>
+            </div>
+            <div class="card-body" id="recent-users-body">
+              <div class="empty-state">
+                <div class="empty-icon">⏳</div>
+                <p>Loading...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pending Doctors -->
+          <div class="card">
+            <div class="card-header">
+              <h3><i class="fa-solid fa-user-doctor" style="color:var(--coral)"></i> Pending Doctor Approvals</h3>
+              <a href="admin-doctors.html" class="btn btn-ghost btn-sm">Manage</a>
+            </div>
+            <div class="card-body" id="pending-doctors-body">
+              <div class="empty-state">
+                <div class="empty-icon">⏳</div>
+                <p>Loading...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+    <script src="/frontend/js/config.js"></script>
+  <script src="../js/admin-dashboard.js"></script>
+
+</body>
+
+</html>

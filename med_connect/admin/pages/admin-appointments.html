@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Appointments — MedConnect Admin</title>
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeSidebar()"></div>
+  <div class="admin-layout">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="brand">Med<span>Connect</span></div>
+        <div class="tag"><i class="fa-solid fa-shield-halved"></i> Admin Panel</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+        <a class="nav-link" href="admin-dashboard.html"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a class="nav-link" href="admin-users.html"><i class="fa-solid fa-users"></i> All Users</a>
+        <a class="nav-link" href="admin-doctors.html"><i class="fa-solid fa-user-doctor"></i> Doctor Approval</a>
+        <a class="nav-link" href="admin-assistants.html"><i class="fa-solid fa-user-nurse"></i> Assistants</a>
+        <div class="nav-section-label">Reports</div>
+        <a class="nav-link" href="admin-reports.html"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+        <a class="nav-link active" href="admin-appointments.html"><i class="fa-solid fa-calendar-check"></i>
+          Appointments</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="admin-info">
+          <div class="admin-avatar">🛡️</div>
+          <div>
+            <div class="admin-name" id="admin-name">Admin</div>
+            <div class="admin-role">System Administrator</div>
+          </div>
+        </div>
+        <button class="btn-logout" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <div class="topbar">
+        <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+        <div class="topbar-title">All Appointments</div>
+      </div>
+
+      <div class="page-body">
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-calendar-check" style="color:var(--teal)"></i> Appointment Records</h3>
+          </div>
+          <div class="card-body">
+            <div class="filter-bar">
+              <div class="search-wrap"><i class="fa-solid fa-search"></i><input class="search-input" id="search"
+                  placeholder="Search patient or doctor…" oninput="debounceLoad()" /></div>
+              <input class="select-filter" type="date" id="date-filter" onchange="loadAppts()"
+                style="padding:9px 12px" />
+              <select class="select-filter" id="status-filter" onchange="loadAppts()">
+                <option value="">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="accepted">Accepted</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Serial</th>
+                    <th>Status</th>
+                    <th>Payment</th>
+                  </tr>
+                </thead>
+                <tbody id="appt-tbody">
+                  <tr>
+                    <td colspan="8" style="text-align:center;padding:32px;color:var(--gray)">Loading…</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="toast"></div>
+    <script src="/frontend/js/config.js"></script>
+  <script src="../js/admin-appointments.js"></script>
+
+</body>
+
+</html>
