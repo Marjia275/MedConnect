@@ -1,7 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const connectDB = require("./config/db"); //import
+const connectDB = require("./config/db");
+const doctorRoutes = require("./routes/doctorRoutes"); //import
 
 dotenv.config(); // .env
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/patient", require("./routes/patientRoutes"));
 app.use("/api/doctor", require("./routes/doctorRoutes"));
+app.use("/api/doctors", doctorRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running");
