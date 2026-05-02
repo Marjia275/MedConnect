@@ -1,6 +1,6 @@
 const User        = require("../models/User");
 const Appointment = require("../models/Appointment");
-const Payment     = require("../models/Payment");
+//const Payment     = require("../models/Payment");
 const bcrypt      = require("bcryptjs");
 const jwt         = require("jsonwebtoken");
 
