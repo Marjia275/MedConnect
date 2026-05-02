@@ -1,4 +1,4 @@
-var API_BASE_URL = "http://localhost:5000/api/patient";
+const API_BASE_URL = "https://medconnect-e8ld.onrender.com/api/patient";
 var currentPatient = null;
 
 function toggleDrawer() {

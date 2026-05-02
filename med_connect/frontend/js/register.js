@@ -1,6 +1,6 @@
 var currentMode = "login";
 var currentRole = "patient";
-var API_BASE_URL = "http://localhost:5000/api/auth";
+const API_BASE_URL = "https://medconnect-e8ld.onrender.com/api/auth";
 
 function showMessage(message, type) {
   var messageBox = document.getElementById("formMessage");
