@@ -1,4 +1,5 @@
-var API_BASE_URL = "http://localhost:5000/api/doctor";
+// FIX: was "http://localhost:5000/api/doctor" (missing 's') — backend registers as /api/doctors
+var API_BASE_URL = "http://localhost:5000/api/doctors";
 
 var now = new Date();
 var days = [
@@ -212,6 +213,7 @@ async function loadDoctorDashboard() {
     document.getElementById("schedule-date").textContent =
       now.getDate() + " " + months[now.getMonth()] + " " + now.getFullYear();
 
+    // FIX: URL now correctly hits /api/doctors/dashboard/:id
     var response = await fetch(API_BASE_URL + "/dashboard/" + doctorId);
     var data = await response.json();
 

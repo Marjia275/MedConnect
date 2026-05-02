@@ -1,4 +1,5 @@
-var API_BASE_URL = "http://localhost:5000/api/doctor";
+// FIX: was "http://localhost:5000/api/doctor" — backend registers as /api/doctors (plural)
+var API_BASE_URL = "http://localhost:5000/api/doctors";
 var currentDoctor = null;
 
 function formatDoctorName(name) {
@@ -28,6 +29,7 @@ async function loadDoctorProfile() {
   var doctorId = user._id || user.id;
 
   try {
+    // FIX: now correctly hits /api/doctors/profile/:id
     var response = await fetch(API_BASE_URL + "/profile/" + doctorId);
     var data = await response.json();
 
@@ -224,6 +226,7 @@ async function saveSection(s) {
   }
 
   try {
+    // FIX: now correctly hits /api/doctors/profile/:id
     var response = await fetch(API_BASE_URL + "/profile/" + doctorId, {
       method: "PUT",
       headers: {
@@ -256,9 +259,12 @@ async function saveSection(s) {
       return;
     }
 
-    currentDoctor = data.doctor;
-    localStorage.setItem("user", JSON.stringify(data.doctor));
-    fillDoctorProfile(data.doctor);
+    // FIX: backend now returns { message, doctor } — update local state and UI
+    if (data.doctor) {
+      currentDoctor = data.doctor;
+      localStorage.setItem("user", JSON.stringify(data.doctor));
+      fillDoctorProfile(data.doctor);
+    }
 
     if (s === "personal") {
       showToast("Personal information saved", "success");
@@ -363,6 +369,7 @@ async function changePassword() {
   }
 
   try {
+    // FIX: now correctly hits /api/doctors/change-password/:id
     var response = await fetch(API_BASE_URL + "/change-password/" + doctorId, {
       method: "PUT",
       headers: {

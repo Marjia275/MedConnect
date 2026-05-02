@@ -1,4 +1,3 @@
-
 let allDoctors  = [];
 let currentPage = 1;
 const perPage   = 6;
@@ -209,7 +208,8 @@ function readParams() {
 function setNavbarUser() {
   try {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user && (user.fullName || user.name)) {
+   
+    if (user && user.role === "patient" && (user.fullName || user.name)) {
       document.getElementById("navbar-username").textContent =
         user.fullName || user.name;
     }

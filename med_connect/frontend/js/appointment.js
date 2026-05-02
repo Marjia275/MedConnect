@@ -1,5 +1,3 @@
-
-
 var selectedDate    = null;
 var selectedDayName = null;
 var currentDoc      = null;  
@@ -16,7 +14,8 @@ var MONTH_NAMES= ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","N
   try {
     var navUser = getUser();
     var navEl   = document.getElementById("navbar-username");
-    if (navEl && navUser) {
+    // FIX: only show name if logged-in user is a patient (not a doctor)
+    if (navEl && navUser && navUser.role === "patient") {
       navEl.textContent = navUser.fullName || navUser.name || "User";
     }
   } catch(e) {}

@@ -86,7 +86,11 @@ const updateDoctorProfile = async (req, res) => {
       doctor.doctorInfo.availability = availability;
     }
     await doctor.save();
-    res.status(200).json({ message: "Doctor profile updated" });
+
+    // FIX: was only returning { message } — frontend's saveSection() needs data.doctor
+    // to call fillDoctorProfile() and update localStorage. Re-fetch to exclude password.
+    const updatedDoctor = await User.findById(userId).select("-password");
+    res.status(200).json({ message: "Doctor profile updated", doctor: updatedDoctor });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -112,7 +116,6 @@ const changeDoctorPassword = async (req, res) => {
   }
 };
 
-
 const getAllDoctors = async (req, res) => {
   try {
     const doctors = await User.find({ role: "doctor" }).select("-password");
@@ -121,7 +124,6 @@ const getAllDoctors = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 const getDoctorById = async (req, res) => {
   try {
