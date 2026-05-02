@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — MedConnect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Sora:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --teal: #0B8A75;
+      --teal-dark: #076B5C;
+      --teal-light: #E8F6F3;
+      --navy: #18324c;
+      --gray: #8899AA;
+      --bg: #f2f5f7;
+      --white: #fff;
+      --border: #E2EBE8;
+      --red: #CC2929;
+      --red-soft: #FFE5E5;
+      --font: 'Nunito', sans-serif;
+      --display: 'Sora', sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-wrap {
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(24, 50, 76, .12);
+      width: 100%;
+      max-width: 440px;
+      overflow: hidden;
+    }
+
+    .login-header {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a4763 100%);
+      padding: 36px 36px 28px;
+      text-align: center;
+    }
+
+    .login-header .logo {
+      font-family: var(--display);
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -.5px;
+    }
+
+    .login-header .logo span {
+      color: #4DB6A2;
+    }
+
+    .login-header p {
+      color: rgba(255, 255, 255, .7);
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .badge-admin {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(77, 182, 162, .2);
+      color: #4DB6A2;
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 12px;
+      border: 1px solid rgba(77, 182, 162, .3);
+    }
+
+    .login-body {
+      padding: 36px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--gray);
+      margin-bottom: 7px;
+    }
+
+    .input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--navy);
+      background: var(--bg);
+      transition: border-color .2s;
+    }
+
+    .input:focus {
+      outline: none;
+      border-color: var(--teal);
+      background: #fff;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap .input {
+      padding-right: 44px;
+    }
+
+    .toggle-pw {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray);
+      font-size: 15px;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 4px;
+    }
+
+    .btn-login:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(11, 138, 117, .3);
+    }
+
+    .btn-login:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .error-box {
+      background: var(--red-soft);
+      border: 1.5px solid #ffcccc;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--red);
+      margin-bottom: 18px;
+      display: none;
+    }
+
+    .error-box.show {
+      display: block;
+    }
+
+    .login-footer {
+      text-align: center;
+      padding: 16px 36px 28px;
+      font-size: 12px;
+      color: var(--gray);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-wrap">
+    <div class="login-header">
+      <div class="logo">Med<span>Connect</span></div>
+      <p>Healthcare Management Platform</p>
+      <div class="badge-admin"><i class="fa-solid fa-shield-halved"></i> Admin Portal</div>
+    </div>
+    <div class="login-body">
+      <div class="error-box" id="err-box"></div>
+      <div class="form-group">
+        <label>Admin Email</label>
+        <input class="input" type="email" id="email" placeholder="admin@medconnect.com" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-wrap">
+          <input class="input" type="password" id="password" placeholder="••••••••" />
+          <button class="toggle-pw" type="button" onclick="togglePw()" tabindex="-1">
+            <i class="fa-regular fa-eye" id="pw-icon"></i>
+          </button>
+        </div>
+      </div>
+      <button class="btn-login" id="login-btn" onclick="doLogin()">
+        <i class="fa-solid fa-right-to-bracket"></i> Sign In to Admin
+      </button>
+    </div>
+    <div class="login-footer">MedConnect &copy; 2025 · Admin access only</div>
+  </div>
+
+    <script src="/frontend/js/config.js"></script>
+  <script src="../js/admin-login.js"></script>
+
+</body>
+
+</html>

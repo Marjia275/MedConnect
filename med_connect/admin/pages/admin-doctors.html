@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Doctor Approval — MedConnect Admin</title>
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeSidebar()"></div>
+  <div class="admin-layout">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="brand">Med<span>Connect</span></div>
+        <div class="tag"><i class="fa-solid fa-shield-halved"></i> Admin Panel</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+        <a class="nav-link" href="admin-dashboard.html"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a class="nav-link" href="admin-users.html"><i class="fa-solid fa-users"></i> All Users</a>
+        <a class="nav-link active" href="admin-doctors.html"><i class="fa-solid fa-user-doctor"></i> Doctor Approval</a>
+        <a class="nav-link" href="admin-assistants.html"><i class="fa-solid fa-user-nurse"></i> Assistants</a>
+        <div class="nav-section-label">Reports</div>
+        <a class="nav-link" href="admin-reports.html"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+        <a class="nav-link" href="admin-appointments.html"><i class="fa-solid fa-calendar-check"></i> Appointments</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="admin-info">
+          <div class="admin-avatar">🛡️</div>
+          <div>
+            <div class="admin-name" id="admin-name">Admin</div>
+            <div class="admin-role">System Administrator</div>
+          </div>
+        </div>
+        <button class="btn-logout" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <div class="topbar">
+        <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+        <div class="topbar-title">Doctor Approval</div>
+      </div>
+
+      <div class="page-body">
+        <!-- Tabs -->
+        <div style="display:flex;gap:10px;margin-bottom:20px">
+          <button class="btn btn-primary" id="tab-pending" onclick="setTab('pending')">⏳ Pending</button>
+          <button class="btn btn-ghost" id="tab-approved" onclick="setTab('approved')">✅ Approved</button>
+          <button class="btn btn-ghost" id="tab-rejected" onclick="setTab('rejected')">❌ Rejected</button>
+        </div>
+
+        <!-- Pending -->
+        <div id="section-pending">
+          <div id="pending-grid" class="stat-grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
+            <div class="card" style="grid-column:1/-1">
+              <div class="card-body">
+                <div class="empty-state">
+                  <div class="empty-icon">⏳</div>
+                  <p>Loading…</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="section-approved" style="display:none">
+          <div class="card">
+            <div class="card-header">
+              <h3>Approved Doctors</h3>
+            </div>
+            <div class="card-body">
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Specialty</th>
+                      <th>BMDC</th>
+                      <th>Fee</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="approved-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="section-rejected" style="display:none">
+          <div class="card">
+            <div class="card-header">
+              <h3>Rejected Doctors</h3>
+            </div>
+            <div class="card-body">
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Specialty</th>
+                      <th>BMDC</th>
+                      <th>Registered</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="rejected-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="doc-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Doctor Details</h3><button class="modal-close" onclick="closeModal('doc-modal')"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="doc-modal-body"></div>
+      <div class="modal-footer" id="doc-modal-footer"></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+    <script src="/frontend/js/config.js"></script>
+  <script src="../js/admin-doctors.js"></script>
+
+</body>
+
+</html>
