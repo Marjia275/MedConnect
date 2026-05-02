@@ -22,7 +22,7 @@
       <a href="dashboard.html">My Dashboard</a>
       <div class="navbar-user">
         <div class="navbar-avatar">👤</div>
-        <a href="dashboard.html">Rahim Uddin</a>
+        <a href="dashboard.html"><span id="navbar-username">User</span></a>
       </div>
     </div>
   </nav>
@@ -82,7 +82,7 @@
           <div class="form-row mb-16">
             <div class="form-group">
               <label>Full Name</label>
-              <input class="input" id="p-name" placeholder="Your full name" value="Rahim Uddin" />
+         <input class="input" id="p-name" placeholder="Your full name" />
             </div>
             <div class="form-group">
               <label>Phone Number</label>
@@ -155,8 +155,7 @@
     </div>
 
     <div class="sticky-bar-actions">
-      <!-- <div style="font-size:11px;color:var(--gray);text-align:right;line-height:1.5;">🔒 Confirmed<br />after approval
-      </div> -->
+     
       <button class="btn btn-primary btn-lg" onclick="showConfirmModal()">
         Confirm &amp; Book →
       </button>
@@ -193,6 +192,7 @@
     </div>
   </div>
 
+  <script src="../js/config.js"></script>
   <script src="../js/appointment.js"></script>
 </body>
 

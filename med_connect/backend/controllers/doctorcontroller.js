@@ -4,38 +4,20 @@ const Appointment = require("../models/Appointment");
 const getDoctorDashboard = async (req, res) => {
   try {
     const { userId } = req.params;
-
     const doctor = await User.findById(userId).select("-password");
-
     if (!doctor || doctor.role !== "doctor") {
       return res.status(404).json({ message: "Doctor not found" });
     }
-
     const appointments = await Appointment.find({ doctor: userId })
       .sort({ createdAt: -1 })
       .populate("patient", "firstName lastName fullName email phone");
-
     const today = new Date().toISOString().split("T")[0];
-
-    const todayAppointments = appointments.filter(
-      (item) => item.appointmentDate === today
-    );
-
-    const pendingRequests = appointments.filter(
-      (item) => item.status === "pending"
-    );
-
-    const completedAppointments = appointments.filter(
-      (item) => item.status === "completed"
-    );
-
-    const uniquePatients = new Set(
-      appointments.map((item) => String(item.patient?._id || item.patient))
-    );
-
+    const todayAppointments = appointments.filter((item) => item.appointmentDate === today);
+    const pendingRequests = appointments.filter((item) => item.status === "pending");
+    const completedAppointments = appointments.filter((item) => item.status === "completed");
+    const uniquePatients = new Set(appointments.map((item) => String(item.patient?._id || item.patient)));
     const consultationFee = Number(doctor.doctorInfo?.consultationFee || 0);
     const monthlyEarnings = completedAppointments.length * consultationFee;
-
     res.status(200).json({
       doctor,
       stats: {
@@ -56,13 +38,10 @@ const getDoctorDashboard = async (req, res) => {
 const getDoctorProfile = async (req, res) => {
   try {
     const { userId } = req.params;
-
     const doctor = await User.findById(userId).select("-password");
-
     if (!doctor || doctor.role !== "doctor") {
       return res.status(404).json({ message: "Doctor not found" });
     }
-
     res.status(200).json({ doctor });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -73,39 +52,18 @@ const updateDoctorProfile = async (req, res) => {
   try {
     const { userId } = req.params;
     const {
-      fullName,
-      email,
-      phone,
-      gender,
-      city,
-      dateOfBirth,
-      specialty,
-      degree,
-      experience,
-      bmdc,
-      consultationFee,
-      maxPatientsPerDay,
-      chamberName,
-      chamberAddress,
-      about,
-      availability
+      fullName, email, phone, gender, city, dateOfBirth,
+      specialty, degree, experience, bmdc, consultationFee,
+      maxPatientsPerDay, chamberName, chamberAddress, about, availability
     } = req.body;
-
     const doctor = await User.findById(userId);
-
     if (!doctor || doctor.role !== "doctor") {
       return res.status(404).json({ message: "Doctor not found" });
     }
-
-    const emailExists = await User.findOne({
-      email: email.toLowerCase(),
-      _id: { $ne: userId }
-    });
-
+    const emailExists = await User.findOne({ email: email.toLowerCase(), _id: { $ne: userId } });
     if (emailExists) {
       return res.status(400).json({ message: "Email already exists" });
     }
-
     const nameParts = fullName.trim().split(" ");
     doctor.firstName = nameParts[0];
     doctor.lastName = nameParts.slice(1).join(" ");
@@ -115,7 +73,6 @@ const updateDoctorProfile = async (req, res) => {
     doctor.gender = gender;
     doctor.city = city;
     doctor.dateOfBirth = dateOfBirth;
-
     doctor.doctorInfo.specialty = specialty;
     doctor.doctorInfo.degree = degree;
     doctor.doctorInfo.experience = Number(experience || 0);
@@ -125,13 +82,10 @@ const updateDoctorProfile = async (req, res) => {
     doctor.doctorInfo.chamberName = chamberName;
     doctor.doctorInfo.chamberAddress = chamberAddress;
     doctor.doctorInfo.about = about;
-
     if (Array.isArray(availability)) {
       doctor.doctorInfo.availability = availability;
     }
-
     await doctor.save();
-
     res.status(200).json({ message: "Doctor profile updated" });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -142,50 +96,40 @@ const changeDoctorPassword = async (req, res) => {
   try {
     const { userId } = req.params;
     const { currentPassword, newPassword } = req.body;
-
     const doctor = await User.findById(userId);
-
     if (!doctor || doctor.role !== "doctor") {
       return res.status(404).json({ message: "Doctor not found" });
     }
-
     const isMatch = await doctor.comparePassword(currentPassword);
-
     if (!isMatch) {
       return res.status(400).json({ message: "Wrong password" });
     }
-
     doctor.password = newPassword;
     await doctor.save();
-
     res.status(200).json({ message: "Password updated" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+
 const getAllDoctors = async (req, res) => {
   try {
     const doctors = await User.find({ role: "doctor" }).select("-password");
+    res.status(200).json(doctors);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-    const formatted = doctors.map((doc) => ({
-      id: doc._id,
-      name: doc.fullName,
-      spec: doc.doctorInfo?.specialty || "",
-      emoji: '<i class="fa-solid fa-user-doctor" style="color: rgb(1, 24, 20);"></i>',
-      degree: doc.doctorInfo?.degree || "",
-      exp: doc.doctorInfo?.experience || 0,
-      rating: 4.8,
-      reviews: 100,
-      fee: doc.doctorInfo?.consultationFee || 0,
-      location: doc.city || "",
-      avail: "available",
-      chamber: doc.doctorInfo?.chamberName || "",
-      chamberLocation: doc.doctorInfo?.chamberAddress || "",
-      tags: []
-    }));
 
-    res.status(200).json(formatted);
+const getDoctorById = async (req, res) => {
+  try {
+    const doctor = await User.findById(req.params.id).select("-password");
+    if (!doctor || doctor.role !== "doctor") {
+      return res.status(404).json({ message: "Doctor not found" });
+    }
+    res.status(200).json({ doctor });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -196,5 +140,6 @@ module.exports = {
   getDoctorProfile,
   updateDoctorProfile,
   changeDoctorPassword,
-  getAllDoctors
+  getAllDoctors,
+  getDoctorById
 };
