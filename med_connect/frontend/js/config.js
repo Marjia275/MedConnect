@@ -2,15 +2,15 @@
 const API_BASE_URL = "https://medconnect-e8ld.onrender.com/api";
 
 const API = {
-  AUTH: `${API_BASE}/auth`,
-  PATIENT: `${API_BASE}/patient`,
-  DOCTOR: `${API_BASE}/doctor`,
-  DOCTORS: `${API_BASE}/doctors`,
-  APPOINTMENTS: `${API_BASE}/appointments`,
-  PRESCRIPTIONS: `${API_BASE}/prescriptions`,
-  PAYMENTS: `${API_BASE}/payments`,
-  ASSISTANT: `${API_BASE}/assistant`,
-  ADMIN: `${API_BASE}/admin`,
+  AUTH: `${API_BASE_URL}/auth`,
+  PATIENT: `${API_BASE_URL}/patient`,
+  DOCTOR: `${API_BASE_URL}/doctor`,
+  DOCTORS: `${API_BASE_URL}/doctors`,
+  APPOINTMENTS: `${API_BASE_URL}/appointments`,
+  PRESCRIPTIONS: `${API_BASE_URL}/prescriptions`,
+  PAYMENTS: `${API_BASE_URL}/payments`,
+  ASSISTANT: `${API_BASE_URL}/assistant`,
+  ADMIN: `${API_BASE_URL}/admin`,
 };
 
 function getUser() {
