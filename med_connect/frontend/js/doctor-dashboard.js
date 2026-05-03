@@ -1,5 +1,4 @@
-// FIX: was "http://localhost:5000/api/doctor" (missing 's') — backend registers as /api/doctors
-const API_BASE_URL = "https://medconnect-e8ld.onrender.com/api/doctors";
+const API_BASE_URL = "https://medconnect-e8ld.onrender.com/api/doctor";
 
 var now = new Date();
 var days = [

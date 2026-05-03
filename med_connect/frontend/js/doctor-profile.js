@@ -1,5 +1,4 @@
-// FIX: was "http://localhost:5000/api/doctor" — backend registers as /api/doctors (plural)
-const API_BASE_URL = "https://medconnect-e8ld.onrender.com/api/doctors";
+const API_BASE_URL = "https://medconnect-e8ld.onrender.com/api/doctor";
 var currentDoctor = null;
 
 function formatDoctorName(name) {
