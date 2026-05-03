@@ -1,6 +1,7 @@
 var currentMode = "login";
 var currentRole = "patient";
 const API_BASE_URL = "https://medconnect-e8ld.onrender.com/api/auth";
+//const API_BASE_URL = "http://localhost:5000/api/auth";
 
 function showMessage(message, type) {
   var messageBox = document.getElementById("formMessage");
@@ -169,13 +170,16 @@ async function loginUser() {
       return;
     }
 
-    localStorage.setItem("user", JSON.stringify(data.user));
+    localStorage.setItem("user",  JSON.stringify(data.user));
+    if (data.token) localStorage.setItem("token", data.token);
 
     showMessage("Signed in successfully. Redirecting...", "success");
 
     setTimeout(function () {
       if (data.user.role === "doctor") {
         window.location.href = "./doctor-dashboard.html";
+      } else if (data.user.role === "assistant") {
+        window.location.href = "./assistant-dashboard.html";
       } else {
         window.location.href = "./dashboard.html";
       }

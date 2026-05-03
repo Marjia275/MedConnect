@@ -12,7 +12,8 @@ const API = {
   PRESCRIPTIONS:`${API_BASE}/prescriptions`,
   PAYMENTS:     `${API_BASE}/payments`,
   ASSISTANT:    `${API_BASE}/assistant`,
-  ADMIN:        `${API_BASE}/admin`,
+  ADMIN:            `${API_BASE}/admin`,
+  DOCTOR_ASSISTANT: `${API_BASE}/doctor-assistant`,
 };
 
 // ─── Auth helpers ─────────────────────────────────────────────────────────────
