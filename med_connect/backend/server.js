@@ -25,7 +25,8 @@ app.use("/api/appointments",  require("./routes/appointmentRoutes"));
 app.use("/api/prescriptions", require("./routes/prescriptionRoutes"));
 app.use("/api/payments",      require("./routes/paymentRoutes"));
 app.use("/api/admin",         require("./routes/adminRoutes"));
-
+app.use("/api/assistant",        require("./routes/assistantRoutes"));
+app.use("/api/doctor-assistant", require("./routes/doctorAssistantRoutes"));
 
 // ─── SPA fallback ─────────────────────────────────────────────────────────────
 app.get("/{*path}", (req, res) => {

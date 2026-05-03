@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Appointments — MedConnect Assistant</title>
+  <link rel="stylesheet" href="../css/assistant.css" />
+  <script src="https://kit.fontawesome.com/27840f33e9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="nav">
+    <button class="ham" id="ham-btn" onclick="toggleSidebar()">&#9776;</button>
+    <a class="logo" href="../index.html">Med<span>Connect</span></a>
+    <div class="nav-right">
+      <div class="nav-user">
+        <div class="nav-av"><i class="fa-solid fa-user-tie"></i></div>
+        <span id="nav-name">Assistant</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sb-user">
+        <div class="sb-av"><i class="fa-solid fa-user-tie"></i></div>
+        <div>
+          <div class="sb-name" id="sb-name">Assistant</div>
+          <div class="sb-role">Chamber Assistant</div>
+        </div>
+      </div>
+      <nav class="sb-nav">
+        <a class="sb-item" href="assistant-dashboard.html">
+          <span class="icon"><i class="fa-solid fa-gauge-high" style="color:#fff"></i></span>
+          Dashboard
+        </a>
+        <a class="sb-item active" href="assistant-appointments.html">
+          <span class="icon"><i class="fa-solid fa-calendar-check" style="color:#fff"></i></span>
+          Appointments
+        </a>
+        <a class="sb-item" href="#" onclick="doLogout(event)">
+          <span class="icon"><i class="fa-solid fa-power-off" style="color:#fff"></i></span>
+          Logout
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="ph">
+        <div class="ph-title">Appointment Management</div>
+        <div class="ph-sub" id="doctor-info-sub">Loading linked doctor…</div>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <input class="input" id="filter-date" type="date" title="Filter by date" />
+        <select class="input" id="filter-status" style="max-width:160px">
+          <option value="">All Status</option>
+          <option value="pending">Pending</option>
+          <option value="accepted">Accepted</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+          <option value="no-show">No-Show</option>
+        </select>
+        <button class="btn btn-primary btn-sm" onclick="applyFilters()">
+          <i class="fa-solid fa-magnifying-glass"></i> Filter
+        </button>
+        <span class="filter-reset" onclick="resetFilters()"><i class="fa-solid fa-rotate-left"></i> Reset</span>
+      </div>
+
+      <!-- Table card -->
+      <div class="card">
+        <div class="card-title">
+          <i class="fa-solid fa-list-check" style="color:var(--teal)"></i>
+          Appointments
+          <span class="ct-sub" id="result-count">—</span>
+        </div>
+        <div class="table-wrap" id="table-wrap">
+          <div class="loading"><div class="spinner"></div>Loading appointments…</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Payment Confirmation Modal -->
+  <div id="payment-modal" class="modal-backdrop" style="display:none" onclick="if(event.target===this)closePaymentModal()">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title"><i class="fa-solid fa-money-bill-wave"></i> Confirm Payment</div>
+          <div class="modal-sub" id="pm-patient-label">—</div>
+        </div>
+        <button class="modal-close" onclick="closePaymentModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label>Patient Name</label>
+          <input class="input" id="pm-patient-name" type="text" readonly style="background:var(--gray-light)" />
+        </div>
+        <div class="form-row">
+          <label>Amount (৳)</label>
+          <input class="input" id="pm-amount" type="number" min="0" />
+        </div>
+        <div class="form-row">
+          <label>Payment Method</label>
+          <select class="input" id="pm-method" onchange="toggleBkashFields()">
+            <option value="bkash">bKash</option>
+            <option value="cash">Cash</option>
+            <option value="card">Card</option>
+          </select>
+        </div>
+        <div id="bkash-fields">
+          <div class="form-row">
+            <label>Transaction ID</label>
+            <input class="input" id="pm-txn" type="text" placeholder="e.g. 9FG3J2..." />
+          </div>
+          <div class="form-row">
+            <label>bKash Number</label>
+            <input class="input" id="pm-bkash" type="text" placeholder="e.g. 01712345678" />
+          </div>
+        </div>
+        <div id="cash-note" style="display:none;background:var(--teal-light);border-radius:var(--radius-sm);padding:12px;font-size:13px;color:var(--teal-dark);font-weight:600;margin-bottom:10px">
+          <i class="fa-solid fa-circle-info"></i> Cash payment — transaction ID optional.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="closePaymentModal()">Cancel</button>
+        <button class="btn btn-primary" id="pm-confirm-btn" onclick="confirmPayment()">
+          <i class="fa-solid fa-circle-check"></i> Confirm Payment
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/assistant-appointments.js"></script>
+</body>
+</html>
