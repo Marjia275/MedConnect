@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assistant Profile — MedConnect</title>
+  <link rel="stylesheet" href="../css/assistant.css" />
+  <script src="https://kit.fontawesome.com/27840f33e9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="nav">
+    <button class="ham" id="ham-btn" onclick="toggleSidebar()">&#9776;</button>
+    <a class="logo" href="../index.html">Med<span>Connect</span></a>
+    <div class="nav-right">
+      <div class="nav-user">
+        <div class="nav-av"><i class="fa-solid fa-stethoscope"></i></div>
+        <span id="nav-name">Doctor</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sb-user">
+        <div class="sb-av"><i class="fa-solid fa-stethoscope"></i></div>
+        <div>
+          <div class="sb-name" id="sb-name">Doctor</div>
+          <div class="sb-role" id="sb-role">Specialist</div>
+        </div>
+      </div>
+      <nav class="sb-nav">
+        <a class="sb-item" href="doctor-dashboard.html">
+          <span class="icon"><i class="fa-solid fa-house-medical" style="color:#fff"></i></span>
+          Dashboard
+        </a>
+        <a class="sb-item" href="Doctor_My_patients.html">
+          <span class="icon"><i class="fa-solid fa-user-group" style="color:#fff"></i></span>
+          My Patients
+        </a>
+        <a class="sb-item" href="doctor-profile.html">
+          <span class="icon"><i class="fa-regular fa-circle-user" style="color:#f3f5f5"></i></span>
+          My Profile
+        </a>
+        <a class="sb-item active" href="Doctor-assistant.html">
+          <span class="icon"><i class="fa-solid fa-user-pen" style="color:#e8f0fe"></i></span>
+          Assistant Profile
+        </a>
+        <a class="sb-item" href="#" onclick="doLogout(event)">
+          <span class="icon"><i class="fa-solid fa-power-off" style="color:#fff"></i></span>
+          Logout
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="ph">
+        <div class="ph-title">Assistant Profile</div>
+        <div class="ph-sub">Manage your chamber assistant</div>
+      </div>
+
+      <!-- Loading -->
+      <div id="loading-state">
+        <div class="card">
+          <div class="loading"><div class="spinner"></div>Loading assistant info…</div>
+        </div>
+      </div>
+
+      <!-- Assistant EXISTS card -->
+      <div id="assistant-section" style="display:none">
+        <div class="assistant-card mb20">
+          <div class="assistant-avatar">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+          <div class="assistant-info">
+            <div class="assistant-name" id="asst-name">—</div>
+            <div class="assistant-detail"><i class="fa-solid fa-envelope"></i><span id="asst-email">—</span></div>
+            <div class="assistant-detail"><i class="fa-solid fa-phone"></i><span id="asst-phone">—</span></div>
+            <div style="margin-top:10px"><span class="badge badge-active">&#10003; Active</span></div>
+          </div>
+          <div class="assistant-actions">
+            <button class="btn btn-danger btn-sm" onclick="confirmRemove()">
+              <i class="fa-solid fa-user-minus"></i> Remove Assistant
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="fa-solid fa-circle-info" style="color:var(--teal)"></i> About Assistant Role</div>
+          <p style="font-size:13px;color:var(--gray);line-height:1.7;">
+            Your assistant can log in at the MedConnect portal and manage appointment requests on your behalf.
+            They can accept or reject bookings, confirm payments, assign serial numbers, and mark appointments as completed.
+            They cannot modify prescriptions or patient medical records.
+          </p>
+        </div>
+      </div>
+
+      <!-- NO assistant — show invite form -->
+      <div id="invite-section" style="display:none">
+        <div class="empty-state card mb20">
+          <div class="ei"><i class="fa-solid fa-user-clock" style="font-size:44px;color:var(--teal);opacity:0.5"></i></div>
+          <div class="et">No Assistant Linked Yet</div>
+          <div class="es">Add an assistant to help manage appointment requests and scheduling for your chamber.</div>
+        </div>
+
+        <div class="invite-form">
+          <div class="form-title"><i class="fa-solid fa-user-plus" style="color:var(--teal)"></i> Add / Invite Assistant</div>
+
+          <div class="grid-2">
+            <div class="form-row">
+              <label for="inv-name">Full Name</label>
+              <input class="input" id="inv-name" type="text" placeholder="e.g. Mina Akter" />
+            </div>
+            <div class="form-row">
+              <label for="inv-phone">Phone Number</label>
+              <input class="input" id="inv-phone" type="text" placeholder="e.g. 01712345678" />
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="inv-email">Email Address</label>
+            <input class="input" id="inv-email" type="email" placeholder="e.g. mina@example.com" />
+          </div>
+
+          <button class="btn btn-primary" id="invite-btn" onclick="inviteAssistant()">
+            <i class="fa-solid fa-link"></i> Send Invite &amp; Link Assistant
+          </button>
+
+          <div class="invite-info">
+            <strong><i class="fa-solid fa-circle-info"></i> How it works:</strong><br>
+            If this email is already registered as an assistant, they will be linked to you immediately.<br>
+            Otherwise, a new assistant account will be created with temporary password:
+            <strong>MedConnect@123</strong><br>
+            Share the credentials and ask them to change the password after first login.
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Confirm Remove Modal -->
+  <div id="remove-modal" class="modal-backdrop" style="display:none" onclick="if(event.target===this)this.style.display='none'">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title"><i class="fa-solid fa-triangle-exclamation"></i> Remove Assistant</div>
+          <div class="modal-sub">This action will unlink the assistant from your account.</div>
+        </div>
+        <button class="modal-close" onclick="document.getElementById('remove-modal').style.display='none'">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:14px;color:var(--navy);line-height:1.7;">
+          Are you sure you want to remove <strong id="remove-name">this assistant</strong>?<br>
+          Their account will remain active but they will no longer be linked to your chamber.
+          You can add a different assistant afterwards.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="document.getElementById('remove-modal').style.display='none'">Cancel</button>
+        <button class="btn btn-danger" id="confirm-remove-btn" onclick="removeAssistant()">
+          <i class="fa-solid fa-user-minus"></i> Yes, Remove
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/Doctor-assistant.js"></script>
+</body>
+</html>
