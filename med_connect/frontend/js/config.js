@@ -1,7 +1,5 @@
-// ─── MedConnect API Configuration ────────────────────────────────────────────
-// Change this ONE value when deploying to production.
-// e.g. "https://your-backend.onrender.com/api"
-const API_BASE = "http://localhost:5000/api";
+
+const API_BASE = "https://medconnect-e8ld.onrender.com/api";
 
 const API = {
   AUTH:         `${API_BASE}/auth`,
