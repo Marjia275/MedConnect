@@ -41,7 +41,7 @@ function renderAssistant(asst) {
 
 async function loadAssistant() {
   try {
-    const res = await fetch(`${API.DOCTOR_ASSISTANT}/my-assistant/${currentUser.id}`, {
+    const res = await fetch(`${API.DOCTOR_ASSISTANT}/my-assistant/${currentUser._id}`, {
       headers: authHeaders(),
     });
     const data = await res.json();
