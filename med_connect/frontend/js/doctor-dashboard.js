@@ -152,7 +152,7 @@ function renderSchedule(list) {
       '<div class="sn">No appointments for today</div>' +
       '<div class="st">Your schedule is empty</div>' +
       "</div>" +
-      '<a class="btn3" href="Doctor_My_patients.html">' +
+      '<a class="btn3" href="doctor-my-patients.html">' +
       '<i class="fa-solid fa-user-group" style="color:#e8f0fe"></i>' +
       "View Patients" +
       "</a>" +
@@ -189,7 +189,7 @@ function renderSchedule(list) {
         timeText +
         "</div>" +
         "</div>" +
-        '<a class="btn3" href="Doctor_My_patients.html">' +
+        '<a class="btn3" href="doctor-my-patients.html">' +
         '<i class="fa-solid fa-file-prescription" style="color:#e8f0fe"></i>' +
         "Prescribe" +
         "</a>" +

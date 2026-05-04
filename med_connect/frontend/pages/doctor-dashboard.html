@@ -1,227 +1,201 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>doctor dashboard</title>
-    <link href="../css/doctor-dashboard.css" rel="stylesheet" />
-    <script
-      src="https://kit.fontawesome.com/27840f33e9.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <nav class="nav">
-      <button class="ham" id="hamburger-btn" onclick="toggleDrawer()">
-        ☰
-      </button>
-      <a class="logo" href="../index.html">Med<span>Connect</span></a>
-      <div class="nav-right">
-        <div class="nav-user">
-          <div class="nav-av"><i class="fa-solid fa-stethoscope"></i></div>
-          <span id="nav-doctor-name">Doctor</span>
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>doctor dashboard</title>
+  <link href="../css/doctor-dashboard.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/27840f33e9.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="nav">
+    <button class="ham" id="hamburger-btn" onclick="toggleDrawer()">
+      ☰
+    </button>
+    <a class="logo" href="../index.html">Med<span>Connect</span></a>
+    <div class="nav-right">
+      <div class="nav-user">
+        <div class="nav-av"><i class="fa-solid fa-stethoscope"></i></div>
+        <span id="nav-doctor-name">Doctor</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sb-user">
+        <div class="sb-av"><i class="fa-solid fa-stethoscope"></i></div>
+        <div>
+          <div class="sb-name" id="sidebar-doctor-name">Doctor</div>
+          <div class="sb-role" id="sidebar-doctor-role">Specialist</div>
         </div>
       </div>
-    </nav>
 
-    <div class="layout">
-      <aside class="sidebar" id="sidebar">
-        <div class="sb-user">
-          <div class="sb-av"><i class="fa-solid fa-stethoscope"></i></div>
+      <nav class="sb-nav">
+        <a class="sb-item active" href="doctor-dashboard.html">
+          <span class="icon"><i class="fa-solid fa-house-medical" style="color: #fff"></i></span>
+          Dashboard
+        </a>
+
+        <a class="sb-item" href="doctor-my-patients.html">
+          <span class="icon"><i class="fa-solid fa-user-group" style="color: #fff"></i></span>
+          My Patients
+          <span class="badge" id="patients-badge">0</span>
+        </a>
+
+        <a class="sb-item" href="doctor-profile.html">
+          <span class="icon"><i class="fa-regular fa-circle-user" style="color: #f3f5f5"></i></span>
+          My Profile
+        </a>
+
+        <a class="sb-item" href="../pages/doctor-assistant.html">
+          <span class="icon"><i class="fa-solid fa-user-pen" style="color: #e8f0fe"></i></span>
+          Assistant Profile
+        </a>
+
+        <a class="sb-item" href="#" onclick="confirmLogout(event)">
+          <span class="icon"><i class="fa-solid fa-power-off" style="color: #fff"></i></span>
+          Logout
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="ph">
+        <div class="ph-title">Doctor Dashboard</div>
+        <div class="ph-sub" id="today-date">Loading…</div>
+      </div>
+
+      <div class="pstrip">
+        <div class="pav"><i class="fa-solid fa-stethoscope"></i></div>
+
+        <div class="pstrip-content">
+          <div class="pname" id="doctor-name">Doctor</div>
+          <div class="pmeta" id="doctor-meta">Loading profile...</div>
+
+          <div class="pstats">
+            <span>
+              <i class="fa-solid fa-user-group" style="color: #fdffff"></i>
+              <span id="total-patients-strip">0 Total Patients</span>
+            </span>
+            <span class="pdiv">|</span>
+            <span>
+              <i class="fa-regular fa-calendar-days" style="color: #ffffff"></i>
+              <span id="appointments-done-strip">0 Appointments Done</span>
+            </span>
+          </div>
+        </div>
+
+        <a class="btn1" href="doctor-my-patients.html">+ New Prescription</a>
+      </div>
+
+      <div class="stats">
+        <div class="sc">
+          <div class="si">
+            <i class="fa-regular fa-calendar-days" style="color: #0a7d6c"></i>
+          </div>
+          <div class="sv" id="stat-today-appointments">0</div>
+          <div class="sl">Today's Appointments</div>
+          <div class="schange up">Today schedule</div>
+        </div>
+
+        <div class="sc">
+          <div class="si">⏳</div>
+          <div class="sv dark" id="stat-pending-requests">0</div>
+          <div class="sl">Pending Requests</div>
+          <div class="schange neu">Awaiting action</div>
+        </div>
+
+        <div class="sc">
+          <div class="si">
+            <i class="fa-solid fa-user-group" style="color: #0a7d6c"></i>
+          </div>
+          <div class="sv" id="stat-total-patients">0</div>
+          <div class="sl">Total Patients</div>
+          <div class="schange up">Registered under you</div>
+        </div>
+
+        <div class="sc">
+          <div class="si">
+            <i class="fa-regular fa-credit-card" style="color: #0a7d6c"></i>
+          </div>
+          <div class="sv" id="stat-monthly-earnings">৳0</div>
+          <div class="sl">This Month's Earnings</div>
+          <div class="schange up">Based on completed visits</div>
+        </div>
+      </div>
+
+      <div class="quick">
+        <a class="qcard" href="doctor-my-patients.html">
+          <div class="qi">
+            <i class="fa-solid fa-user-group" style="color: #0a7d6c"></i>
+          </div>
           <div>
-            <div class="sb-name" id="sidebar-doctor-name">Doctor</div>
-            <div class="sb-role" id="sidebar-doctor-role">Specialist</div>
+            <div class="ql">My Patients</div>
+            <div class="qd">View, search and prescribe your patients</div>
+          </div>
+        </a>
+
+        <a class="qcard" href="doctor-profile.html">
+          <div class="qi">
+            <i class="fa-regular fa-clock" style="color: #0a7d6c"></i>
+          </div>
+          <div>
+            <div class="ql">Set Availability</div>
+            <div class="qd">Manage your working hours and schedule</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="ctitle">
+          <span>Today's Schedule</span>
+
+          <div class="ctitle-right">
+            <span id="schedule-date" class="schedule-date"></span>
+            <a class="btn2" href="doctor-my-patients.html">View All Patients</a>
           </div>
         </div>
 
-        <nav class="sb-nav">
-          <a class="sb-item active" href="doctor-dashboard.html">
-            <span class="icon"
-              ><i class="fa-solid fa-house-medical" style="color: #fff"></i
-            ></span>
-            Dashboard
-          </a>
-
-          <a class="sb-item" href="Doctor_My_patients.html">
-            <span class="icon"
-              ><i class="fa-solid fa-user-group" style="color: #fff"></i
-            ></span>
-            My Patients
-            <span class="badge" id="patients-badge">0</span>
-          </a>
-
-          <a class="sb-item" href="doctor-profile.html">
-            <span class="icon"
-              ><i class="fa-regular fa-circle-user" style="color: #f3f5f5"></i
-            ></span>
-            My Profile
-          </a>
-
-          <a class="sb-item" href="../pages/Doctor-assistant.html">
-            <span class="icon"
-              ><i class="fa-solid fa-user-pen" style="color: #e8f0fe"></i
-            ></span>
-            Assistant Profile
-          </a>
-
-          <a class="sb-item" href="#" onclick="confirmLogout(event)">
-            <span class="icon"
-              ><i class="fa-solid fa-power-off" style="color: #fff"></i
-            ></span>
-            Logout
-          </a>
-        </nav>
-      </aside>
-
-      <main class="main">
-        <div class="ph">
-          <div class="ph-title">Doctor Dashboard</div>
-          <div class="ph-sub" id="today-date">Loading…</div>
-        </div>
-
-        <div class="pstrip">
-          <div class="pav"><i class="fa-solid fa-stethoscope"></i></div>
-
-          <div class="pstrip-content">
-            <div class="pname" id="doctor-name">Doctor</div>
-            <div class="pmeta" id="doctor-meta">Loading profile...</div>
-
-            <div class="pstats">
-              <span>
-                <i class="fa-solid fa-user-group" style="color: #fdffff"></i>
-                <span id="total-patients-strip">0 Total Patients</span>
-              </span>
-              <span class="pdiv">|</span>
-              <span>
-                <i
-                  class="fa-regular fa-calendar-days"
-                  style="color: #ffffff"
-                ></i>
-                <span id="appointments-done-strip">0 Appointments Done</span>
-              </span>
+        <div class="sgrid" id="schedule-list">
+          <div class="scard">
+            <div class="snum">#01</div>
+            <div class="sav">A</div>
+            <div class="sinfo">
+              <div class="sn">Loading schedule...</div>
+              <div class="st">Please wait</div>
             </div>
+            <a class="btn3" href="doctor-my-patients.html">
+              <i class="fa-solid fa-file-prescription" style="color: #e8f0fe"></i>
+              Prescribe
+            </a>
           </div>
-
-          <a class="btn1" href="Doctor_My_patients.html">+ New Prescription</a>
-        </div>
-
-        <div class="stats">
-          <div class="sc">
-            <div class="si">
-              <i class="fa-regular fa-calendar-days" style="color: #0a7d6c"></i>
-            </div>
-            <div class="sv" id="stat-today-appointments">0</div>
-            <div class="sl">Today's Appointments</div>
-            <div class="schange up">Today schedule</div>
-          </div>
-
-          <div class="sc">
-            <div class="si">⏳</div>
-            <div class="sv dark" id="stat-pending-requests">0</div>
-            <div class="sl">Pending Requests</div>
-            <div class="schange neu">Awaiting action</div>
-          </div>
-
-          <div class="sc">
-            <div class="si">
-              <i class="fa-solid fa-user-group" style="color: #0a7d6c"></i>
-            </div>
-            <div class="sv" id="stat-total-patients">0</div>
-            <div class="sl">Total Patients</div>
-            <div class="schange up">Registered under you</div>
-          </div>
-
-          <div class="sc">
-            <div class="si">
-              <i class="fa-regular fa-credit-card" style="color: #0a7d6c"></i>
-            </div>
-            <div class="sv" id="stat-monthly-earnings">৳0</div>
-            <div class="sl">This Month's Earnings</div>
-            <div class="schange up">Based on completed visits</div>
-          </div>
-        </div>
-
-        <div class="quick">
-          <a class="qcard" href="Doctor_My_patients.html">
-            <div class="qi">
-              <i class="fa-solid fa-user-group" style="color: #0a7d6c"></i>
-            </div>
-            <div>
-              <div class="ql">My Patients</div>
-              <div class="qd">View, search and prescribe your patients</div>
-            </div>
-          </a>
-
-          <a class="qcard" href="doctor-profile.html">
-            <div class="qi">
-              <i class="fa-regular fa-clock" style="color: #0a7d6c"></i>
-            </div>
-            <div>
-              <div class="ql">Set Availability</div>
-              <div class="qd">Manage your working hours and schedule</div>
-            </div>
-          </a>
-        </div>
-
-        <div class="card">
-          <div class="ctitle">
-            <span>Today's Schedule</span>
-
-            <div class="ctitle-right">
-              <span id="schedule-date" class="schedule-date"></span>
-              <a class="btn2" href="Doctor_My_patients.html"
-                >View All Patients</a
-              >
-            </div>
-          </div>
-
-          <div class="sgrid" id="schedule-list">
-            <div class="scard">
-              <div class="snum">#01</div>
-              <div class="sav">A</div>
-              <div class="sinfo">
-                <div class="sn">Loading schedule...</div>
-                <div class="st">Please wait</div>
-              </div>
-              <a class="btn3" href="Doctor_My_patients.html">
-                <i
-                  class="fa-solid fa-file-prescription"
-                  style="color: #e8f0fe"
-                ></i>
-                Prescribe
-              </a>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
-
-    <div
-      class="drawer-overlay"
-      id="drawer-overlay"
-      onclick="closeDrawer()"
-    ></div>
-
-    <div
-      class="modal-overlay"
-      id="logout-modal"
-      onclick="if (event.target === this) closeLogoutModal();"
-    >
-      <div class="modal-box">
-        <div class="modal-icon">
-          <i class="fa-solid fa-power-off"></i>
-        </div>
-        <div class="modal-title">Log Out?</div>
-        <div class="modal-text">
-          Are you sure you want to log out of your MedConnect account?
-        </div>
-        <div class="modal-actions">
-          <button class="btn5" onclick="closeLogoutModal()">Cancel</button>
-          <button class="btn6" onclick="logoutUser()">Yes, Log Out</button>
         </div>
       </div>
-    </div>
+    </main>
+  </div>
 
-    <script src="../js/doctor-dashboard.js"></script>
-  </body>
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+
+  <div class="modal-overlay" id="logout-modal" onclick="if (event.target === this) closeLogoutModal();">
+    <div class="modal-box">
+      <div class="modal-icon">
+        <i class="fa-solid fa-power-off"></i>
+      </div>
+      <div class="modal-title">Log Out?</div>
+      <div class="modal-text">
+        Are you sure you want to log out of your MedConnect account?
+      </div>
+      <div class="modal-actions">
+        <button class="btn5" onclick="closeLogoutModal()">Cancel</button>
+        <button class="btn6" onclick="logoutUser()">Yes, Log Out</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/doctor-dashboard.js"></script>
+</body>
+
 </html>

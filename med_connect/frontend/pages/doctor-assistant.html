@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="../css/assistant.css" />
   <script src="https://kit.fontawesome.com/27840f33e9.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
   <!-- TOP NAV -->
@@ -37,7 +39,7 @@
           <span class="icon"><i class="fa-solid fa-house-medical" style="color:#fff"></i></span>
           Dashboard
         </a>
-        <a class="sb-item" href="Doctor_My_patients.html">
+        <a class="sb-item" href="doctor-my-patients.html">
           <span class="icon"><i class="fa-solid fa-user-group" style="color:#fff"></i></span>
           My Patients
         </a>
@@ -45,7 +47,7 @@
           <span class="icon"><i class="fa-regular fa-circle-user" style="color:#f3f5f5"></i></span>
           My Profile
         </a>
-        <a class="sb-item active" href="Doctor-assistant.html">
+        <a class="sb-item active" href="doctor-assistant.html">
           <span class="icon"><i class="fa-solid fa-user-pen" style="color:#e8f0fe"></i></span>
           Assistant Profile
         </a>
@@ -66,7 +68,9 @@
       <!-- Loading -->
       <div id="loading-state">
         <div class="card">
-          <div class="loading"><div class="spinner"></div>Loading assistant info…</div>
+          <div class="loading">
+            <div class="spinner"></div>Loading assistant info…
+          </div>
         </div>
       </div>
 
@@ -90,10 +94,12 @@
         </div>
 
         <div class="card">
-          <div class="card-title"><i class="fa-solid fa-circle-info" style="color:var(--teal)"></i> About Assistant Role</div>
+          <div class="card-title"><i class="fa-solid fa-circle-info" style="color:var(--teal)"></i> About Assistant Role
+          </div>
           <p style="font-size:13px;color:var(--gray);line-height:1.7;">
             Your assistant can log in at the MedConnect portal and manage appointment requests on your behalf.
-            They can accept or reject bookings, confirm payments, assign serial numbers, and mark appointments as completed.
+            They can accept or reject bookings, confirm payments, assign serial numbers, and mark appointments as
+            completed.
             They cannot modify prescriptions or patient medical records.
           </p>
         </div>
@@ -102,13 +108,15 @@
       <!-- NO assistant — show invite form -->
       <div id="invite-section" style="display:none">
         <div class="empty-state card mb20">
-          <div class="ei"><i class="fa-solid fa-user-clock" style="font-size:44px;color:var(--teal);opacity:0.5"></i></div>
+          <div class="ei"><i class="fa-solid fa-user-clock" style="font-size:44px;color:var(--teal);opacity:0.5"></i>
+          </div>
           <div class="et">No Assistant Linked Yet</div>
           <div class="es">Add an assistant to help manage appointment requests and scheduling for your chamber.</div>
         </div>
 
         <div class="invite-form">
-          <div class="form-title"><i class="fa-solid fa-user-plus" style="color:var(--teal)"></i> Add / Invite Assistant</div>
+          <div class="form-title"><i class="fa-solid fa-user-plus" style="color:var(--teal)"></i> Add / Invite Assistant
+          </div>
 
           <div class="grid-2">
             <div class="form-row">
@@ -142,7 +150,8 @@
   </div>
 
   <!-- Confirm Remove Modal -->
-  <div id="remove-modal" class="modal-backdrop" style="display:none" onclick="if(event.target===this)this.style.display='none'">
+  <div id="remove-modal" class="modal-backdrop" style="display:none"
+    onclick="if(event.target===this)this.style.display='none'">
     <div class="modal">
       <div class="modal-header">
         <div>
@@ -159,7 +168,8 @@
         </p>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-ghost" onclick="document.getElementById('remove-modal').style.display='none'">Cancel</button>
+        <button class="btn btn-ghost"
+          onclick="document.getElementById('remove-modal').style.display='none'">Cancel</button>
         <button class="btn btn-danger" id="confirm-remove-btn" onclick="removeAssistant()">
           <i class="fa-solid fa-user-minus"></i> Yes, Remove
         </button>
@@ -171,6 +181,7 @@
   <div id="toast-container"></div>
 
   <script src="../js/config.js"></script>
-  <script src="../js/Doctor-assistant.js"></script>
+  <script src="../js/doctor-assistant.js"></script>
 </body>
+
 </html>

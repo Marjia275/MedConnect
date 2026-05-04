@@ -1,4 +1,4 @@
-// Doctor-assistant.js — Doctor manages their assistant
+// doctor-assistant.js — Doctor manages their assistant
 
 let currentUser = null;
 let currentAssistant = null;
@@ -27,21 +27,21 @@ function showToast(msg, type = "success") {
 function renderAssistant(asst) {
   currentAssistant = asst;
   if (asst) {
-    document.getElementById("asst-name").textContent  = asst.fullName;
+    document.getElementById("asst-name").textContent = asst.fullName;
     document.getElementById("asst-email").textContent = asst.email;
     document.getElementById("asst-phone").textContent = asst.phone;
     document.getElementById("assistant-section").style.display = "block";
-    document.getElementById("invite-section").style.display    = "none";
+    document.getElementById("invite-section").style.display = "none";
   } else {
     document.getElementById("assistant-section").style.display = "none";
-    document.getElementById("invite-section").style.display    = "block";
+    document.getElementById("invite-section").style.display = "block";
   }
   document.getElementById("loading-state").style.display = "none";
 }
 
 async function loadAssistant() {
   try {
-    const res  = await fetch(`${API.DOCTOR_ASSISTANT}/my-assistant/${currentUser.id}`, {
+    const res = await fetch(`${API.DOCTOR_ASSISTANT}/my-assistant/${currentUser.id}`, {
       headers: authHeaders(),
     });
     const data = await res.json();
@@ -56,8 +56,8 @@ async function loadAssistant() {
 
 async function inviteAssistant() {
   const fullName = document.getElementById("inv-name").value.trim();
-  const email    = document.getElementById("inv-email").value.trim();
-  const phone    = document.getElementById("inv-phone").value.trim();
+  const email = document.getElementById("inv-email").value.trim();
+  const phone = document.getElementById("inv-phone").value.trim();
 
   if (!fullName || !email || !phone) {
     showToast("Please fill in all fields.", "error");
@@ -69,10 +69,10 @@ async function inviteAssistant() {
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Linking…';
 
   try {
-    const res  = await fetch(`${API.DOCTOR_ASSISTANT}/invite`, {
-      method:  "POST",
+    const res = await fetch(`${API.DOCTOR_ASSISTANT}/invite`, {
+      method: "POST",
       headers: authHeaders(),
-      body:    JSON.stringify({ fullName, email, phone }),
+      body: JSON.stringify({ fullName, email, phone }),
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.message);
@@ -99,8 +99,8 @@ async function removeAssistant() {
   btn.disabled = true;
 
   try {
-    const res  = await fetch(`${API.DOCTOR_ASSISTANT}/remove/${currentAssistant._id}`, {
-      method:  "DELETE",
+    const res = await fetch(`${API.DOCTOR_ASSISTANT}/remove/${currentAssistant._id}`, {
+      method: "DELETE",
       headers: authHeaders(),
     });
     const data = await res.json();
@@ -124,7 +124,7 @@ async function removeAssistant() {
     return;
   }
   document.getElementById("nav-name").textContent = currentUser.fullName || "Doctor";
-  document.getElementById("sb-name").textContent  = currentUser.fullName || "Doctor";
-  document.getElementById("sb-role").textContent  = currentUser.doctorInfo?.specialty || "Specialist";
+  document.getElementById("sb-name").textContent = currentUser.fullName || "Doctor";
+  document.getElementById("sb-role").textContent = currentUser.doctorInfo?.specialty || "Specialist";
   loadAssistant();
 })();

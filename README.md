@@ -147,7 +147,7 @@ Med-Connect/
         │   ├── dashboard.js                  # Patient dashboard
         │   ├── doctor-dashboard.js
         │   ├── doctor-profile.js
-        │   ├── Doctor-assistant.js           # Doctor's assistant management UI
+        │   ├── doctor-assistant.js           # Doctor's assistant management UI
         │   ├── assistant-dashboard.js
         │   ├── assistant-appointments.js
         │   └── ...
